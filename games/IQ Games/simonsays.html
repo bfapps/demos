@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>Simon Says</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            width: 100%;
+            min-height: 10vh;
+            padding: 0;
+        }
+        section {
+            width: 100%;
+            margin-bottom: 2rem;
+            background-color: indianred;
+        }
+        #section-1 {
+            background-color: #333333;
+            color: white;
+            font-size: x-small;
+            padding: 10px;
+        }
+        #section-3 {
+            background-color: aquamarine;
+            color: #333333;
+            direction: rtl;
+            padding: 10px;
+            font-size: x-small;
+            text-align: center;
+        }
+        #article1 {
+            display: grid;
+            grid-template-columns: repeat(6, auto);
+            grid-auto-rows: auto;
+            background-color: #2d3e50;
+            margin-bottom: 2px;
+        }
+        button {
+            background: #333333;
+            padding: 16.66%;
+            color: #333333;
+            border: white 2px solid;
+        }
+        .press {
+            width: 100%;
+            padding: 1rem 0 1rem 0;
+            margin-bottom: 2px;
+            background-color: mediumaquamarine;
+            color: white;
+        }
+        #level {
+            color: white;
+            background-color: #2d3e50;
+            margin-top: 0;
+            margin-left: 0;
+            width: fit-content;
+        }
+        footer {
+            background-color: #333333;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            font-size: small;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+        }
+        select {
+            padding: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <section id="section-1" style="display:inherit;direction: rtl">
+        <h3>سلام خوش اومدی:</h3><br><br>
+        <label for="choice">انتخاب سطح</label><br><br>
+        <select id="choice">
+            <option value="1">آسان</option>
+            <option value="2">متوسط</option>
+            <option value="3">سخت</option>
+            <option value="4">حرفه ای</option>
+        </select><br><br>
+        <!--<label for="password">پسورد رو وارد کن</label>
+        <input type="text" id="password"><br><br>-->
+        <button type="button" class="press" onclick="passwordcheck()"> ورود به بازی</button>
+
+    </section>
+    <section id="main-page" style="display:none;background-color: white;">
+
+        <article id="article1">
+            <button type="button" onclick="function1(this.id)" id="1">3</button>
+            <button type="button" onclick="function1(this.id)" id="2">3</button>
+            <button type="button" onclick="function1(this.id)" id="3">3</button>
+            <button type="button" onclick="function1(this.id)" id="4">3</button>
+            <button type="button" onclick="function1(this.id)" id="5">3</button>
+            <button type="button" onclick="function1(this.id)" id="6">3</button>
+            <button type="button" onclick="function1(this.id)" id="7">3</button>
+            <button type="button" onclick="function1(this.id)" id="8">3</button>
+            <button type="button" onclick="function1(this.id)" id="9">3</button>
+            <button type="button" onclick="function1(this.id)" id="10">3</button>
+            <button type="button" onclick="function1(this.id)" id="11">3</button>
+            <button type="button" onclick="function1(this.id)" id="12">3</button>
+            <button type="button" onclick="function1(this.id)" id="13">3</button>
+            <button type="button" onclick="function1(this.id)" id="14">3</button>
+            <button type="button" onclick="function1(this.id)" id="15">3</button>
+            <button type="button" onclick="function1(this.id)" id="16">3</button>
+            <button type="button" onclick="function1(this.id)" id="17">3</button>
+            <button type="button" onclick="function1(this.id)" id="18">3</button>
+            <button type="button" onclick="function1(this.id)" id="19">3</button>
+            <button type="button" onclick="function1(this.id)" id="20">3</button>
+            <button type="button" onclick="function1(this.id)" id="21">3</button>
+            <button type="button" onclick="function1(this.id)" id="22">3</button>
+            <button type="button" onclick="function1(this.id)" id="23">3</button>
+            <button type="button" onclick="function1(this.id)" id="24">3</button>
+            <button type="button" onclick="function1(this.id)" id="25">3</button>
+            <button type="button" onclick="function1(this.id)" id="26">3</button>
+            <button type="button" onclick="function1(this.id)" id="27">3</button>
+            <button type="button" onclick="function1(this.id)" id="28">3</button>
+            <button type="button" onclick="function1(this.id)" id="29">3</button>
+            <button type="button" onclick="function1(this.id)" id="30">3</button>
+            <button type="button" onclick="function1(this.id)" id="31">3</button>
+            <button type="button" onclick="function1(this.id)" id="32">3</button>
+            <button type="button" onclick="function1(this.id)" id="33">3</button>
+            <button type="button" onclick="function1(this.id)" id="34">3</button>
+            <button type="button" onclick="function1(this.id)" id="35">3</button>
+            <button type="button" onclick="function1(this.id)" id="36">3</button>
+        </article>
+        <button class="press" id="start" onclick="startgame(); setTimeout(clearthegame, 1500);">شروع بازی</button>
+        <button class="press" id="reset" onclick="check()">ثبت پاسخ</button>
+        <p style="display: none" id="solution"></p>
+        <p style="display: none" id="memory"></p>
+        <p id="difficulty" style="display: none">3</p>
+        <p id="mistake" style="display: none"></p>
+        <button class="press" style="background-color: #333333;"><output style="margin-right: 5px;color: white" id="level">1</output><output>  تعداد مربع که روشن میشود</output></button>
+        <button class="press" style="background-color: #2e79bd"><output style="margin-right: 5px;color: white" id="score">0</output><output>  امتیاز </output></button></button>
+        <button class="press" style="background-color: #607D8B" id="exit" onclick="exitfile()">خروج از این سطح</button>
+    </section>
+
+</main>
+<footer>
+    <p>ساخته شده توسط امیر سردارآبادی</p>
+    <p>amirsardarse9930@gmail.com</p>
+</footer>
+<script>
+    document.getElementById("choice").addEventListener("change", function () {
+        var x = document.getElementById("choice").value;
+        document.getElementById("score").innerHTML="0";
+        if (x == 1)
+        {
+            document.getElementById("difficulty").innerHTML= "3";
+            document.getElementById("level").innerHTML= "1";
+        }
+        if (x == 2)
+        {
+            document.getElementById("difficulty").innerHTML= "6";
+            document.getElementById("level").innerHTML= "4";
+        }
+        if (x == 3)
+        {
+            document.getElementById("difficulty").innerHTML= "8";
+            document.getElementById("level").innerHTML= "6";
+        }
+        if (x == 4)
+        {
+            document.getElementById("difficulty").innerHTML= "10";
+            document.getElementById("level").innerHTML= "8";
+        }
+
+    })
+    function passwordcheck() {
+            document.getElementById("section-1").style.display= "none";
+            document.getElementById("main-page").style.display= "unset";
+    }
+    function function1(x) {
+        var bgc = document.getElementById(x).innerHTML;
+        if (bgc == 3)
+        {   document.getElementById(x).innerHTML="7";
+            document.getElementById(x).style.background="yellow";
+            document.getElementById(x).style.color="yellow";
+        }
+        else
+        {   document.getElementById(x).innerHTML="3";
+            document.getElementById(x).style.background="#333333";
+            document.getElementById(x).style.color="#333333";
+        }
+
+    }
+
+    function startgame() {
+        var clear = 1;
+        while (clear < 37)
+        {
+            document.getElementById(clear).style.background= "#333333";
+            document.getElementById(clear).innerHTML= "3";
+            document.getElementById(clear).style.color= "#333333";
+            clear= clear + 1;
+        }
+        document.getElementById("memory").innerHTML="";
+        var level = document.getElementById("level").innerHTML;
+        var counter = 0;
+        while (counter < level)
+        {
+            var number= Math.floor(Math.random() * 36) + 1;
+            var valid = document.getElementById(number).innerHTML;
+            if (valid == "3")
+            {
+                document.getElementById(number).style.background= "yellow";
+                document.getElementById(number).style.color= "yellow";
+                document.getElementById(number).innerHTML="7";
+                var y = document.getElementById("memory").innerHTML;
+                document.getElementById("memory").innerHTML= y + number;
+                counter= counter + 1;
+            }
+
+        }
+
+    }
+
+    function clearthegame() {
+        document.getElementById("memory").innerHTML="";
+        var counter = 1;
+        while (counter < 37)
+        {
+            var valid = document.getElementById(counter).innerHTML;
+            if (valid == "7")
+            {   var y = document.getElementById("memory").innerHTML;
+                document.getElementById("memory").innerHTML= y + counter;
+            }
+            counter= counter + 1;
+
+        }
+        var clear = 1;
+        while (clear < 37)
+        {
+            document.getElementById(clear).style.background= "#333333";
+            document.getElementById(clear).innerHTML= "3";
+            document.getElementById(clear).style.color= "#333333";
+            clear= clear + 1;
+        }
+        document.getElementById("solution").innerHTML="";
+    }
+
+    function check() {
+        document.getElementById("solution").innerHTML="";
+        var counter = 1;
+        while (counter < 37)
+        {
+            var valid = document.getElementById(counter).innerHTML;
+            if (valid == "7")
+            {   var y = document.getElementById("solution").innerHTML;
+                document.getElementById("solution").innerHTML= y + counter;
+            }
+            counter= counter + 1;
+        }
+
+        var x1 = document.getElementById("memory").innerHTML;
+        var x2 = document.getElementById("solution").innerHTML;
+        if (x2 != "")
+        {
+            if (x1 == x2)
+            {
+                var valid = document.getElementById("level").innerHTML;
+                var counter2=1;
+                while (counter2 != valid)
+                {
+                    counter2 = counter2 + 1;
+                }
+                counter2= counter2 + 1;
+                document.getElementById("level").innerHTML= counter2;
+                var counter3= document.getElementById("difficulty").innerHTML;
+                var u = 0;
+                while (u < counter3)
+                {
+                    u= u + 1;
+                }
+
+                counter3 = u;
+                if (counter2 > counter3)
+                {   var x = Math.floor(Math.random() * 5) + counter3 + 1;
+                    document.getElementById("level").innerHTML= x;
+                }
+                var clear = 1;
+                while (clear < 37)
+                {
+                    document.getElementById(clear).style.background= "#333333";
+                    document.getElementById(clear).innerHTML= "3";
+                    document.getElementById(clear).style.color= "#333333";
+                    clear= clear + 1;
+                }
+                document.getElementById("memory").innerHTML="";
+
+                var score = document.getElementById("score").innerHTML;
+                var sc= 0;
+                while (sc != score)
+                {
+                    sc = sc + 1;
+                }
+                sc = sc + 1;
+                document.getElementById("score").innerHTML= sc;
+            }
+            else {
+                var clear = 1;
+                while (clear < 37)
+                {
+                    document.getElementById(clear).style.background= "#333333";
+                    document.getElementById(clear).innerHTML= "3";
+                    document.getElementById(clear).style.color= "#333333";
+                    clear= clear + 1;
+                }
+                alert("اشتباه بود");
+
+                var score = document.getElementById("score").innerHTML;
+                var counter=0
+                while (counter < score)
+                {
+                    counter= counter + 1;
+                }
+                score = score - 1;
+                document.getElementById("score").innerHTML= score;
+
+                document.getElementById("mistake").innerHTML= document.getElementById("mistake").innerHTML + 1;
+                var mistake = document.getElementById("mistake").innerHTML;
+                if ( mistake == "111")
+                {
+                    var score2 = document.getElementById("score").innerHTML;
+                    document.getElementById("score").innerHTML="0";
+                    alert("سه تا جونت تموم شد و امتیازت میشه "+ score2);
+
+                }
+            }
+
+
+        }
+    }
+
+    function exitfile() {
+            var name= document.getElementById("difficulty").innerHTML;
+            var total= document.getElementById("score").innerHTML;
+            document.getElementById("main-page").style.display="none";
+            document.getElementById("section-1").style.display="inherit";
+            if (name == 3)
+            {   var y = "امتیاز شما در سطح آسان" + total + "بود";
+                alert(y);
+            }
+            if (name == 6)
+             {   var y = "امتیاز شما در سطح متوسط" + total + "بود";
+            alert(y);
+            }
+            if (name == 8)
+            {   var y = "امتیاز شما در سطح سخت" + total + "بود";
+            alert(y);
+            }
+            if (name == 10)
+            {   var y = "امتیاز شما در سطح حرفه ای" + total + "بود";
+            alert(y);
+            }
+    }
+
+</script>
+</body>
+</html>

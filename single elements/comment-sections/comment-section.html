@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Section</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+        .comment-section-container {
+            width: 100vw;
+            padding: 40px 0;
+        }
+        .comment-section-container form {
+            margin: 0 auto;
+            width: 453px;
+            padding: 50px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            background-image: linear-gradient(to bottom, #343E49, #0A0C0F);
+            border-radius: 10px;
+        }
+        .comment-section-container form label {
+            display: inline-block;
+            padding-left: 4px;
+            color: #C9C9C9;
+            text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 22px;
+            
+        }
+        .comment-section-container form input, .comment-section-container form textarea {
+            display: inline-block;
+            width: 100%;
+            height: 39px;
+            padding: 10px 10px;
+            margin: 9px 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 15px;
+            color: #fff;
+            border: 2px solid rgba(202, 202, 202, 0.1);
+            border-radius: 10px;
+            background-color: #1C212A;
+            box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.1);
+        }
+        .comment-section-container form input:hover, .comment-section-container form textarea:hover {
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+         .comment-section-container form input:focus, .comment-section-container form textarea:focus {
+            border: 2px solid rgba(3, 149, 207, 0.3);
+        }
+        .comment-section-container form #client-comment {   
+            height: 140px;
+        }
+        /* making it ready to show false alert with this div: input-holder*/
+        .comment-section-container form .input-holder {
+            position: relative;
+            padding: 0 0 29px 0;
+        }
+        .comment-section-container form .comment-section-alert {
+            position: absolute;
+            bottom: 0;
+            left: 4px;
+            padding-left: 4px;
+            margin: 0 0 12px 0;
+            font-size: 13px;
+            color: #FF1528;
+            display: none;
+        }
+        /* adding incorrect p alert class */
+        .comment-section-container form .incorrect-client-email-alert, .comment-section-container form .incorrect-client-name-alert {
+            display: block;
+        }
+        /* a div to justify submit input in center of it */
+        .comment-section-container form .submit-holder {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .comment-section-container form #submit {
+            width: 180px;
+            padding: 0 8px;
+            font-size: 16px;
+            color: #222222;
+            display: grid;
+            place-content: center;
+            background-color: #bdbdbd;
+            border: none;
+            cursor: pointer;
+        }
+        .comment-section-container form #submit:hover {
+            background-color: #ffff;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+        /* change input border color based on being correct or incorrect input */
+        .comment-section-container form .correct-input {
+            border: 2px solid rgba(16, 253, 0, 0.3);
+        }
+        .comment-section-container form .incorrect-input {
+            border: 2px solid rgba(255, 2, 2, 0.3);
+        }
+
+
+        @media (max-width: 492px) {
+            .comment-section-container form {
+                width: 90%;
+                padding: 30px;
+            }
+            .comment-section-container form .comment-section-alert {
+                font-size: 11px;
+            }
+            .comment-section-container form #submit {
+                background-color: #ffff;
+                box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+            }
+        }
+        @media (max-width: 375px) {
+            .comment-section-container form {
+                padding: 30px 20px;
+            }
+            .comment-section-container form label {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="comment-section-container">
+        <form>
+            <div class="input-holder">
+                <label for="client-name"><i class="fas fa-user-edit" style="padding-top: 2px;"></i> Name</label>
+                <input type="text" id="client-name" name="client-name" required>
+                <p class="comment-section-alert" id="client-name-alert">You must write a name here !</p>
+            </div>
+            
+            <div class="input-holder">
+                <label for="client-email"><i class="fas fa-at" style="padding-top: 2px;"></i> E-mail</label>
+                <input type="text" id="client-email" name="client-email" required>
+                <p class="comment-section-alert" id="client-email-alert">Your e-mail must follow a@b.com pattern !</p>
+            </div>
+            <div class="input-holder">
+                <label for="client-comment" id="client-comment-label"><i class="fas fa-comment-dots" style="padding-top: 2px;"></i> Comment</label>
+                <textarea name="" id="client-comment" cols="0" rows="0" required></textarea>
+            </div>
+            <div class="submit-holder">
+                <input type="submit" value="submit" id="submit">
+            </div>    
+        </form>
+    </div>
+
+    <script>
+        const clientName = document.getElementById("client-name");
+        const clientEamil = document.getElementById("client-email");
+        const clientComment = document.getElementById("client-comment");
+        const submit = document.getElementById("submit");
+        const clientCommentLabel = document.getElementById("client-comment-label");
+
+        submit.addEventListener("click", function () {
+            clientNameChecker();
+            clientEmailChecker();
+        })
+        // validating name function
+        clientName.addEventListener("change", function () {
+                clientNameChecker();
+            })
+        // validating E-mail function
+            clientEamil.addEventListener("change", function () {
+                clientEmailChecker();
+            })
+        // main functions to check the name
+        function clientNameChecker() {
+            let strLength = clientName.value.length;
+            if (strLength !== 0) {
+                clientName.classList.remove("incorrect-input");
+                clientName.classList.add("correct-input");
+                document.getElementById("client-name-alert").classList.remove("incorrect-client-name-alert");
+            }
+            else {
+                clientName.classList.add("incorrect-input");
+                clientName.classList.remove("correct-input");
+                document.getElementById("client-name-alert").classList.add("incorrect-client-name-alert");
+            }
+        }
+
+        // main functions to check the email
+        function clientEmailChecker() {
+            let strLength = clientEamil.value.length;
+            let domainChars = strLength - 4;
+            let c = 1;
+            let char = "";
+            let domain = clientEamil.value.slice(domainChars, strLength);
+            for (let i = 0; i < strLength; i++) {
+                char = clientEamil.value.slice(i, c);
+                c++;
+                if (char === "@") {
+                    charValid = "true"
+                }
+            }
+            if (domain === ".com" && charValid === "true") {
+                clientEamil.classList.remove("incorrect-input");
+                clientEamil.classList.add("correct-input");
+                document.getElementById("client-email-alert").classList.remove("incorrect-client-email-alert");
+            }
+            else {
+                clientEamil.classList.remove("correct-input");
+                clientEamil.classList.add("incorrect-input");
+                document.getElementById("client-email-alert").classList.add("incorrect-client-email-alert");
+            }
+        }
+
+        
+    </script>
+</body>
+</html>

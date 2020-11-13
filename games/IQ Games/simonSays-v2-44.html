@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon Says V2</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #fdfdfd;
+        }
+
+        .score-box {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 8px;
+            background-color: #0e153a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .score-box span {
+            color: #FFF;
+            font-size: 24px;
+        }
+
+        .score-box .scoreText {
+            margin-right: 8px;
+        }
+
+        .table-container {
+            margin-top: 4px;
+            background-color: #fdfdfd;
+            padding: 0px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #fdfdfd;
+        }
+
+        .table-container .table {
+            background-color: #0e153a;
+            width: calc(4 * 50px);
+            display: grid;
+            grid-template-columns: repeat(4, 50px);
+            grid-auto-rows: 50px 50px 50px;
+        }
+
+        .table-container .table,
+        .table-container .table div {
+            border: #fff solid 2px;
+            border-collapse: collapse;
+        }
+
+        .table-container .table div {
+            cursor: pointer;
+            transition: all 300ms;
+        }
+
+        .table-container .table div p {
+            display: none;
+        }
+
+        /* start button */
+        .game-function-buttons {
+            display: flex;
+            width: 100%;
+            margin-top: 4px;
+        }
+
+        .game-function-buttons button {
+            display: inline-block;
+            flex: 1;
+            background-color: #0e153a;
+            color: #fff;
+            height: 40px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 900px) {
+            .table-container {
+                height: 85vh;
+            }
+
+            .game-function-buttons {
+                width: 100%;
+            }
+        }
+
+        @media (orientation: portrait) and (max-width: 600px) {
+            .table-container .table {
+                width: 100%;
+                grid-template-columns: repeat(4, 1fr);
+                grid-auto-rows: 25vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="score-box"><span class="scoreText">score: </span><span class="scoreNumber">0</span> </div>
+    <div class="table-container">
+
+        <div class="table" id="table">
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <p></p>
+            </div>
+        </div>
+        <div class="game-function-buttons">
+            <button type="button" id="game-starter" onclick="startGame()">Start</button>
+            <button type="button" id="game-checker" onclick="checkGame()">No Function</button>
+        </div>
+    </div>
+
+
+    <div class="index-number" style="display: none;"></div>
+    <script>
+        localStorage.setItem('userStr', "");
+        localStorage.setItem('inputCounter', 0);
+        localStorage.setItem('gameMode', "off");
+        document.querySelector("#game-checker").disabled = true;
+
+        // main Functions that we use later      
+        function random(range, repeat) {
+            let str = "";
+            let randomNumber = "";
+            for (let i = 0; i < repeat; i++) {
+                randomNumber = Math.floor(Math.random() * range);
+                if (randomNumber < 10) {
+                    str = str + "0" + randomNumber;
+                }
+                else {
+                    str = str + randomNumber;
+                }
+
+            }
+            localStorage.setItem('str', str + "00");
+
+        }
+
+        // this code is using loop and it's the best option so far; forEach;function;function; method;
+        document.querySelectorAll(".table div").forEach(function (item) {
+            item.addEventListener("click", function (event) {
+                let index = event.target;
+                let indexNumber = Number(Array.from(index.parentNode.children).indexOf(index));
+                if (indexNumber < 10) {
+                    indexNumber = "0" + indexNumber;
+                    console.log(indexNumber);
+                }
+                let userStr = localStorage.getItem('userStr');
+                // limit Number is Actual Limits minus 1 because counting starts at 0 
+                let inputLimit = 4;
+                let inputCounter = Number(localStorage.getItem('inputCounter'));
+                let gameMode = localStorage.getItem('gameMode');
+                if (gameMode === "on") {
+                    localStorage.setItem('userStr', userStr + indexNumber);
+                    document.querySelector(".index-number").innerHTML = localStorage.getItem('userStr');
+                    document.querySelectorAll(".table div")[Number(indexNumber)].style.backgroundColor = "#a1eafb";
+                    setTimeout(function () {
+                        document.querySelectorAll(".table div")[Number(indexNumber)].style.backgroundColor = "#0e153a";
+                    }, 250)
+
+                    if (inputCounter === inputLimit) {
+                        checkGame();
+                    }
+                    else {
+                        localStorage.setItem('inputCounter', inputCounter + 1);
+                    }
+                }
+
+            })
+        })
+
+
+        // this is a function to start the game
+        function startGame() {
+            localStorage.setItem('inputCounter', 0)
+            localStorage.setItem('userStr', "");
+            localStorage.setItem('gameMode', "on");
+            document.querySelector("#game-starter").disabled = true;
+            random(16, 5);
+            let i = 0;
+            let c = 2;
+            let counter = 0;
+            let repeat = 5 - 1;
+            let index = 0;
+            let element = document.querySelectorAll(".table div");
+            let str = localStorage.getItem('str');
+            let timer = setInterval(() => {
+                element[index].style.backgroundColor = "#0e153a";
+                index = Number(str.slice(i, c));
+
+                setTimeout(() => {
+                    element[index].style.backgroundColor = "#a1eafb";
+                }, 500);
+
+                if (counter > repeat) {
+                    setTimeout(() => {
+                        element[index].style.backgroundColor = "#0e153a";
+                    }, 500);
+                    clearInterval(timer);
+                    document.querySelector("#game-starter").disabled = false;
+                }
+                i = i + 2;
+                c = c + 2;
+                counter++;
+            }, 850);
+
+        }
+
+
+        // this function is going to check if user input and pc input are the same
+        function checkGame() {
+            let pcInput = localStorage.getItem('str').slice(0, 10);
+
+            let userInput = localStorage.getItem('userStr');
+            let scoreNumber = document.querySelector(".scoreNumber");
+            let currentScore = Number(scoreNumber.textContent);
+            if (pcInput === userInput) {
+                currentScore++;
+                scoreNumber.textContent = currentScore;
+                console.log(pcInput);
+            }
+            else {
+                if (currentScore > 0) {
+                    currentScore--;
+                    scoreNumber.textContent = currentScore;
+
+                }
+            }
+            localStorage.setItem('inputCounter', 0);
+            localStorage.setItem('gameMode', "off");
+            startGame();
+        }
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,195 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list effects</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+        }
+        .list-container {
+            width: 100vw;
+            background-color: #f5f5f5;
+            padding: 0px 80px;
+            display: flex;
+            justify-content: center;
+
+        }
+        .list-underline {
+            display: flex;
+            width: 480px;
+            background-color: #002651;
+            padding: 0px 32px;
+            border-radius: 5px;
+            list-style-type: none;
+        }
+        .list-underline li {
+            width: 180px;
+            text-align: center;
+            color: #fdfdfd;
+            position: relative;
+            padding: 16px 0;
+            cursor: pointer;
+            
+        }
+        
+        .list-underline p {
+            margin: 4px 0 0 0;
+        }
+        .list-underline li::after {
+            content: "";
+            position: absolute;
+            display: block;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 4px;
+            width: 0;
+            background-color: #fd3b75;
+            z-index: 5;
+            transition: width 300ms;
+            
+        }
+        .list-underline li:hover::after {
+            width: calc((480px - 64px)/3);
+            
+        }
+
+        /* second ul */
+        .list-underline li ul {
+            background-color: #002651;
+            padding: 16px 8px;
+            position: absolute;
+            list-style-type: none;
+            margin: 16px 0 0 48px;
+            z-index: 1;
+            border-top: #364f6b solid 2px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
+            opacity: .9;
+            /* display: none;     */
+        }
+        
+        .list-underline li ul li {
+            text-align: left;
+            padding-left: 8px;
+        }
+        .list-underline li ul li::after {
+            left: 0;
+            transform: translateY(0);
+        }
+        .list-underline li ul li span {
+            display: inline-block;
+            margin-left: 8px;
+        }
+        
+        .DiactSubList {
+            display: none;
+            
+        }
+        .list-container li:hover > ul {
+            display: block;
+        }
+        .list-underline li ul li:hover::after {
+            
+            transform: translateY(0);
+        }
+
+        .usericon {
+            display: none;
+        }
+        .smalllogo {
+            display: none;
+        }
+        #hamburger {
+            display: none;
+        }
+        @media only screen and (max-width: 900px) {
+            .list-container {
+                
+                padding: 4px 4px;
+            }
+            .list-underline {
+                margin: 0;
+                padding: 0 0;
+                justify-content: space-between;
+                width: 100%;
+            }
+            .list-underline > li:nth-child(1){
+                display: none;
+            }
+            
+            .list-underline > li:nth-child(2) {
+                display: none;
+            }
+            .list-underline > li:nth-child(3) {
+                display: none;
+            }
+            #hamburger {
+                display: block;
+                text-align: right;
+                padding-right: 20px;
+            }
+            #hamburger .icon {
+                font-size: 27px;
+            }
+            #hamburger .bars {
+                margin-left: 32px;
+            }
+            .smalllogo {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+            }
+            .smalllogo span {
+                color: #fc5185;
+            }
+            li::after {
+                background-color: transparent;
+            }
+            li:hover::after {
+                background-color: transparent;
+                width: 0;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="list-container">
+        <ul class="list-underline">
+            <li id="navli1" onclick="displaySubList(this.id);"><i class="fa fa-home" aria-hidden="true"></i><p>Home</p>
+                <ul class="DiactSubList">
+                    <li><i class="fa fa-recycle" aria-hidden="true"></i> <span>Recycle</span></li>
+                    <li><i class="fab fa-app-store"></i> <span>App Store</span> </li>
+                    <li><i class="far fa-calendar-alt"></i><span>Course Plans</span> </li>
+                    <li><i class="fas fa-cart-plus"></i><span>Shopping Cart</span> </li>
+                </ul>
+            </li>
+            <li id="navli2" onclick="displaySubList(this.id);"><i class="fa fa-user-alt icon" aria-hidden="true"></i><p>Accounts</p>
+                <ul class="DiactSubList">
+                    <li><i class="fa fa-user-circle" aria-hidden="true"></i> <span>User 1</span> </li>
+                    <li><i class="fa fa-user-circle" aria-hidden="true"></i> <span>User 2</span> </li>
+                </ul>
+            </li>
+            <li id="navli3" onclick="displaySubList(this.id);"><i class="fa fa-question" aria-hidden="true"></i><p>FAQ</p></li>
+            <li class="smalllogo">Bright <span>Future</span></li>
+            <li id="hamburger"><i class="fa fa-user-circle icon" aria-hidden="true"></i><i class="fa fa-bars icon bars" aria-hidden="true"></i></li>
+        </ul>
+    </div>
+    
+
+    <script>
+        
+        // function displaySubList (event) {
+        //     document.getElementById(event).children[2].classList.toggle("DiactSubList");
+        // }
+
+    </script>
+</body>
+</html>

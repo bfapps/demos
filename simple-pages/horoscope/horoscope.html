@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
+    <title>Horoscope</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .header-title-of-app h1 {
+            margin: 20px 0px;
+            text-align: center;
+        }
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            transition: background-color 700ms;
+        }
+        .night-body {
+            background-color: #444444;
+        }
+        .horoscope-container, .horoscope, .horoscope-entities .mode-icon, .horoscope-entities .mode-icon #sun-icon, .horoscope-entities, .horoscope-header-texts h1, .horoscope-header-texts h3 {
+            transition: all 300ms;
+        }
+        .horoscope-container {
+            width: 100%;
+            padding: 30px 0 30px 0;
+            display: grid;
+            place-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 300ms;
+        }
+        .horoscope {
+            position: relative;
+            width: 600px;
+            /* height: 700px; */
+            border: none;
+            border-radius: 30px 30px 0 0;
+            background-color: #fcfcfc;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        .horoscope-header-image {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 330px;
+            border-radius: 30px 30px 0 0;
+            background-color: #333333;
+        }
+        .horoscope-header-image img {
+            object-position: center;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 30px 30px 0 0;
+        }
+        .horoscope-entities .mode-icon {
+            position: absolute;
+            top: 30px;
+            right: 30px; 
+            cursor: pointer;
+            
+        }
+        .horoscope-entities .mode-icon span {
+            color: white;
+            font-size: 24px;
+        }
+        .horoscope-entities .mode-icon #sun-icon {
+            font-size: 24px;
+            color: #333333;
+        }
+        .horoscope-entities {
+            position: relative;
+            width: 100%;
+            /* height: 370px; */
+            padding: 20px;
+        }
+        .horoscope-header-texts h1 {
+            margin: 0;
+            font-weight: 500;
+            text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+        }
+        .horoscope-header-texts h1 span {
+            font-weight: bold;
+            color: #F14D63;
+        }
+        .horoscope-header-texts h3 {
+            color: #595959;
+            font-weight: 500;
+            text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+        }
+        .horoscope-ul {
+            width: 100%;
+            padding: 0 30px;
+        }
+        .horoscope-ul ul {
+            margin: 30px 0;
+            padding: 0;
+            list-style-type: none;
+            display: flex;
+            justify-content: space-between;
+        }
+    
+        .horoscope-ul ul li button {
+            width: 130px;
+            height: 30px;
+            display: grid;
+            place-content: center;
+            padding: 20px 0;
+            background-color: #F5F5F5;
+            border-radius: 5px;
+            border: 0 solid #fff;
+            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1),
+            -4px -4px 4px rgba(200, 200, 200, 0.1);
+            color: #161616;
+            text-transform: capitalize;
+            cursor: pointer;
+            transition: all 300ms;
+        }
+        .horoscope-ul ul li button:hover {
+            background-color: #595959;
+            color: #fff;
+            box-shadow: none;
+        }
+        /* night mode settings starts from here */
+        .night .horoscope{
+            background-color: #2E2E2E;
+        }
+        .night .horoscope-entities .mode-icon #sun-icon {
+            color: #E1E1E1;
+        }
+        .night .horoscope-header-texts h1 {
+            color: #E1E1E1;
+        }
+        .night .horoscope-header-texts h3 {
+            color: #B1B1B1;
+        }
+        .night .horoscope-ul ul li button {
+            background-color: #3B3B3B;
+            color: #E1E1E1;
+            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+        }
+        .night .horoscope-ul ul li button:hover {
+            background-color: #E1E1E1;
+            color: #3B3B3B;
+        }
+        @media (orientation: landscape) and (max-width: 610px) {
+            .horoscope {
+                width: 520px;
+            }
+            .horoscope-header-texts h1 {
+                font-size: 26px;
+            }
+            .horoscope-entities .mode-icon {
+                top: 25px;
+            }
+        }
+        @media (max-width: 550px) {
+            .horoscope-container {
+                display: flex;
+                justify-content: center;
+            }
+            .horoscope {
+                width: 95%;
+                box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+                border-radius: 20px 20px 0 0;
+            }
+            .horoscope-header-image {
+                border-radius: 20px 20px 0 0;
+                height: 220px;
+            }
+            .horoscope-header-image img {
+                border-radius: 20px 20px 0 0;
+            }
+            .horoscope-entities {
+                padding: 10px;
+            }
+            .horoscope-header-texts h1 {
+                font-size: 18px;
+            }
+            .horoscope-header-texts h3 {
+                font-size: 15px;
+            }
+            .horoscope-entities .mode-icon {
+                top: 45px;
+            }
+            .horoscope-ul {
+                padding: 0 15px;
+            }
+            .horoscope-ul ul li button {
+                width: 90px;
+            }
+        }
+        @media (max-width: 350px) {
+            .horoscope {
+                width: 94%;
+            }
+            .horoscope-header-texts h1 {
+                font-size: 16px;
+            }
+            .horoscope-header-texts h3 {
+                font-size: 13px;
+            }
+            .horoscope-entities .mode-icon {
+                top: 35px;
+            }
+            .horoscope-entities .mode-icon #sun-icon {
+                font-size: 20px;
+            }
+            .horoscope-ul {
+                padding: 0 5px;
+            }
+            .horoscope-ul ul li button {
+                width: 85px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-title-of-app"><h1>Horoscope</h1></div>
+    <div id="horoscope-container" class="horoscope-container">
+        <div class="horoscope">
+            <div class="horoscope-header-image">
+                <img src="../../assets/img/horoscope-page/day-sky.jpg" alt="horoscope header">
+                
+            </div>
+            <div class="horoscope-entities">
+                <div id="mode-icon" class="mode-icon"><span></span> <i id="sun-icon" class="fa fa-sun" aria-hidden="true"></i></div>
+                <div class="horoscope-header-texts">
+                    <h1>What will be your <span>future</span> look like?</h1>
+                    <h3>Pick up a month</h3>
+                </div>
+                <div class="horoscope-ul">
+                    <ul>
+                        <li><button type="button">January</button></li>
+                        <li><button type="button">February</button></li>
+                        <li><button type="button">March</button></li>
+                    </ul>
+                    <ul>
+                        <li><button type="button">april</button></li>
+                        <li><button type="button">may</button></li>
+                        <li><button type="button">june</button></li>
+                    </ul>
+                    <ul>
+                        <li><button type="button">july</button></li>
+                        <li><button type="button">august</button></li>
+                        <li><button type="button">september</button></li>
+                    </ul>
+                    <ul>
+                        <li><button type="button">october</button></li>
+                        <li><button type="button">november</button></li>
+                        <li><button type="button" onclick="saveStaticDataToFile()">december</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        // function to set first mode of night mode or day mode
+        const time = new Date().toLocaleTimeString('en-US', {
+                hour12: false,
+                hour: "numeric",
+                minute: "numeric"
+            });
+        const onlyClock = time.slice(0,2);
+        if (onlyClock >= 20 || onlyClock <= 07) {
+           localStorage.setItem("mode", "night"); 
+           document.getElementById("horoscope-container").classList.add("night");
+           document.querySelector("body").classList.add("night-body");
+           document.querySelector('.horoscope-header-image img').src = "../../assets/img/horoscope-page/night-sky.jpg";
+           document.querySelector(".header-title-of-app h1").style.color = "white";
+        }
+
+        // function to change mode by clicks
+        document.getElementById("mode-icon").addEventListener("click", function () {
+            document.getElementById("horoscope-container").classList.toggle("night");
+            document.querySelector("body").classList.toggle("night-body");
+            let mode = localStorage.getItem("mode");
+            if (mode === "night") {
+                document.querySelector('.horoscope-header-image img').src = "../../assets/img/horoscope-page/day-sky.jpg";
+                localStorage.setItem("mode", "day");
+                document.querySelector(".header-title-of-app h1").style.color = "black";
+            }
+            else if (mode === "day") {
+                document.querySelector('.horoscope-header-image img').src = "../../assets/img/horoscope-page/night-sky.jpg";
+                localStorage.setItem("mode", "night");
+                document.querySelector(".header-title-of-app h1").style.color = "white";
+            }
+            
+             
+        })
+
+    </script>
+</body>
+</html>

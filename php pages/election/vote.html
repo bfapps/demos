@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رای آنلاین</title>
+    <meta charset="utf-8">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif
+        }
+        .title-40 {
+            font-size: 18px;
+            font-weight: 300;
+            text-transform: capitalize;
+            line-height: 50px;
+            color: #0c0c0d;
+        }
+        .title-20 {
+            font-size: 17px;
+            font-weight: 600;
+            text-transform: capitalize;
+            line-height: 30px;
+        }
+        .title-30 {
+            font-size: 36px;
+            font-weight: 500;
+            text-transform: capitalize;
+            line-height: 30px;
+            letter-spacing: -3px;
+            font-family: arial;
+            color: #0c0c0d;
+        }
+        body {
+            background-color: #dcdcdc;
+            padding: 20px;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .instruction {
+            direction: rtl;
+            display: inline-block;
+            margin-bottom: 25px;
+            padding: 40px;
+            width: 400px;
+            background-color: #f9f9fa;
+            border-radius: 5px;
+        }
+        .instruction label {
+            display: block;
+            margin: 16px 0;
+            font-size: 20px;
+            color: #0c0c0d;
+            position: relative;
+        }
+        .error {
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #d70022;
+            font-size: 15px;
+            direction: rtl;
+            display: block;
+            transform: translateY(25%);
+        }
+        .instruction input {
+            border-radius: 2px;
+            border: 1px solid rgba(12, 12, 13, 0.2);
+            padding: 4px;
+            width: 100%;
+            font-size: 20px;
+            color: #737373;
+        }
+        .instruction input:focus {
+            border: #00feff solid 2px;
+        }
+        #signinBtn {
+            display: block;
+            margin-top: 20px;
+            background-color: #202340;
+            padding: 8px;
+            width: 100px;
+            color: #fff;
+            border: #202340 solid 2px;
+            border-radius: 3px;
+        }
+        #signinBtn:hover {
+            background-color: #f9f9fa;
+            color: #202340;
+            border: #c0c0cd solid 2px;
+            cursor: pointer;
+
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .section-1 {
+            max-width: 100vw;
+            background-color: #f6f6f6;
+            padding: 32px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 291px));
+            gap: 16px;
+            display: none;
+
+        }
+        article {
+            background-color: #fff;
+            height: 200px;
+            text-align: center;
+            padding: 16px;
+        }
+        button {
+            font-weight: 600;
+            transition: all 200ms;
+        }
+        article button {
+            display: inline-block;
+            cursor: pointer;
+            margin-top: 36px;
+            padding: 8px;
+            width: 160px;
+            color: white;
+            border: solid #202340 2px;
+            border-radius: 5px;
+            background-color: #202340;
+
+        }
+        article .btnAct:hover {
+            background-color: #fff;
+            color: #202340;
+        }
+        .section-2 {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 16px;
+            display: none;
+        }
+        .section-2 input {
+            background-color: #afafba;
+            color: #fff;
+            padding: 16px;
+            border: solid #afafba 2px;
+            width: 200px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+        .section-2 .subBtnAct {
+            background-color: #202340;
+            border: solid #fff 2px;
+        }
+        .section-2 .subBtnAct:hover {
+            background-color: #ededf0;
+            color: #202340;
+            cursor: pointer;
+        }
+        @media only screen and (max-width: 800px) {
+            .section-1 {
+                padding: 32px;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+            }
+            .section-1 article {
+                padding: 8px;
+            }
+        }
+        @media only screen and (max-width: 500px) {
+            body {
+                padding: 16px;
+            }
+            .instruction {
+                padding: 20px;
+                width: 94%;
+            }
+            .instruction label {
+                font-size: 15px;
+            }
+            #fNameError {
+                font-size: 13px;
+            }
+            #lNameError {
+                font-size: 11px;
+            }
+            #phoneNumberError {
+                font-size: 13px;
+            }
+            .section-1 {
+                max-width: 95%;
+                padding: 16px;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+            }
+        }
+        @media only screen and (max-width: 241px) {
+            .section-1 {
+                grid-template-columns: repeat(auto-fit, 160px);
+            }
+            .title-40 {
+                font-size: 20px;
+            }
+            article button {
+                width: 120px;
+                margin: 20px 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="instruction">
+        <label for="fName">نام <div class="error" id="fNameError" style="display: none;">تعداد حروف میبایست حداقل 3 حرف باشد !</div></label>
+        <input type="text" id="fName" minlength="3">
+        <label for="lName">نام خانوادگی <div class="error" id="lNameError" style="display: none;">تعداد حروف میبایست حداقل 3 حرف باشد !</div></label>
+        <input type="text" id="lName" minlength="3">
+        <label for="phoneNumber">تلفن همراه <div class="error" id="phoneNumberError" style="display: none;">تعداد ارقام میبایست 11 رقم باشد !</div></label>
+        <input type="text" id="phoneNumber" maxlength="11">
+        <button type="button" id="signinBtn">ورود</button>
+    </section>
+
+    <section class="section-1">
+        <article>
+            <h2 class="title-40">یونا عباسی</h2>
+            <button title="یونا عباسی" onclick="vote(this.title, this.id)" id="number1" class="btnAct" type="button">ثبت رای</button>
+        </article>
+        <article>
+            <h2 class="title-40">امیر علی سردارآبادی ششم</h2>
+            <button title="امیر علی سردارآبادی ششم" onclick="vote(this.title, this.id)" id="number2" class="btnAct" type="button" >ثبت رای</button>
+        </article>
+        <article>
+            <h2 class="title-40">فاطمه زهرا ملایجردی ششم</h2>
+            <button title="فاطمه زهرا ملایجردی ششم" onclick="vote(this.title, this.id)" id="number3" class="btnAct" type="button">ثبت رای</button>
+        </article>
+        <article>
+            <h2 class="title-40">فاطمه نقابی</h2>
+            <button title="فاطمه نقابی" onclick="vote(this.title, this.id)" id="number4" class="btnAct" type="button">ثبت رای</button>
+        </article>
+        <article>
+            <h2 class="title-40">علی تشکری صالح</h2>
+            <button title="علی تشکری صالح" onclick="vote(this.title, this.id)" id="number5" class="btnAct" type="button">ثبت رای</button>
+        </article>
+         <article>
+            <h2 class="title-40">امیررضا سردارآبادی ششم</h2>
+            <button title="امیررضا سردارآبادی ششم" onclick="vote(this.title, this.id)" id="number6" class="btnAct" type="button"> ثبت رای</button>
+         </article>
+         <article>
+            <h2 class="title-40">محمد حسن یوسف آبادی</h2>
+            <button title="محمد حسن یوسف آبادی" onclick="vote(this.title, this.id)" id="number7" class="btnAct" type="button"> ثبت رای</button>
+         </article>
+         <article>
+            <h2 class="title-40">امید سردارآبادی</h2>
+            <button title="امید سردارآبادی" onclick="vote(this.title, this.id)" id="number8" class="btnAct" type="button"> ثبت رای</button>
+         </article>
+         <article>
+            <h2 class="title-40">ملیکا کلاته میمری</h2>
+            <button title="ملیکا کلاته میمری" onclick="vote(this.title, this.id)" id="number9" class="btnAct" type="button"> ثبت رای</button>
+         </article>
+         <article>
+            <h2 class="title-40">محمد مصطفی میمری</h2>
+            <button title="محمد مصطفی میمری" onclick="vote(this.title, this.id)" id="number10" class="btnAct" type="button"> ثبت رای</button>
+         </article>
+         <article>
+            <h2 class="title-40">فاطمه سردارآبادی علی ششم</h2>
+            <button title="فاطمه سردارآبادی علی ششم" onclick="vote(this.title, this.id)" id="number11" class="btnAct" type="button"> ثبت رای</button>
+         </article>
+    </section>
+    <!-- form : inpute display none-->
+    <form action="voteresult.php" method="post">
+    <p id="counter" style="display:none;" >0</p>
+    <input type="text" id="f-name" name="fName" style="display: none;">
+    <input type="text" id="l-name" name="lName" style="display: none;">
+    <input type="text" id="phone-number" name="phoneNumber" style="display: none;">
+    <input type="text" id="number1id" name="votedName1" value="0" style="display:none">
+    <input type="text" id="number2id" name="votedName2" value="0" style="display:none">
+    <input type="text" id="number3id" name="votedName3" value="0" style="display:none">
+    <input type="text" id="number4id" name="votedName4" value="0" style="display:none">
+    <input type="text" id="number5id" name="votedName5" value="0" style="display:none">
+    <input type="text" id="number6id" name="votedName6" value="0" style="display:none">
+    <input type="text" id="number7id" name="votedName7" value="0" style="display:none">
+    <input type="text" id="number8id" name="votedName8" value="0" style="display:none">
+    <input type="text" id="number9id" name="votedName9" value="0" style="display:none">
+    <input type="text" id="number10id" name="votedName10" value="0" style="display:none">
+    <input type="text" id="number11id" name="votedName11" value="0" style="display:none">
+    <section class="section-2">
+        <input type="submit" id="submitBtn" class="subBtnAct" value="ثبت نهایی رای">
+    </section>
+    </form>
+
+
+    <!-- java script codes -->
+    <script>
+            // check vote and change input value for the voted person
+            const btn = document.querySelectorAll("article button");
+            const subBtn = document.querySelector(".section-2 input");
+            subBtn.disabled = false;
+            function vote(title,id) {
+                let counter = document.getElementById("counter");
+                document.getElementById(id).disabled = true;
+                document.getElementById(id).style.backgroundColor = "#cfcfd8";
+                document.getElementById(id).style.border= "solid 2px #cfcfd8";
+                document.getElementById(id).classList.remove("btnAct");
+                document.getElementById(id).style.cursor= "default";
+                counter.textContent = Number(counter.textContent) + 1;
+                id = id + "id";
+                //alert(id);
+                document.getElementById(id).value = title;
+                if (counter.textContent === "5") {
+                    for (let i = 0; i < btn.length; i++) {
+                        btn[i].disabled = true;
+                        btn[i].style.backgroundColor = "#cfcfd8";
+                        btn[i].style.border = " solid 2px #cfcfd8";
+                        btn[i].classList.remove("btnAct");
+                        btn[i].title = "";
+                        btn[i].style.cursor = "default";
+                    }
+                    subBtn.disabled = false;
+                    //subBtn.classList.add("subBtnAct");
+                }
+
+            }
+
+
+        // check if sign in values are valid
+        let signinBtn = document.querySelector("#signinBtn");
+        signinBtn.addEventListener("click", function checkNames () {
+            let fName = document.querySelector("#fName").value;
+            let lName = document.querySelector("#lName").value;
+            let phoneNumber = document.querySelector("#phoneNumber").value;
+            let checkMark = "false";
+            if (fName.length > 2 && lName.length >2 && phoneNumber.length === 11) {
+                document.querySelector("#f-name").value = fName;
+                document.querySelector("#l-name").value = lName;
+                document.querySelector("#phone-number").value = phoneNumber;
+                document.querySelector(".instruction").style.display = "none";
+                document.querySelector(".section-1").style.display = "grid";
+                document.querySelector(".section-2").style.display = "flex";
+            }
+            else {
+                alert("لطفا از صحت اطلاعات وارد شده اطلاع حاصل فرمایید")
+            }
+        })
+
+        // display error if sign in values are not valid
+        // validation for first name
+        document.getElementById("fName").addEventListener("change", function () {
+            let str = document.querySelector("#fName").value;
+            if (str.length < 3) {
+                document.querySelector("#fNameError").style.display = "block";
+            }
+        })
+        document.getElementById("fName").addEventListener("input", function () {
+                let str = document.querySelector("#fName").value;
+                if (str.length > 2) {
+                    document.querySelector("#fNameError").style.display = "none";
+                }
+            })
+        // validation for last name
+        document.getElementById("lName").addEventListener("change", function () {
+            let str = document.querySelector("#lName").value;
+            if (str.length < 3) {
+                document.querySelector("#lNameError").style.display = "block";
+            }
+        })
+        document.getElementById("lName").addEventListener("input", function () {
+                let str = document.querySelector("#lName").value;
+                if (str.length > 2) {
+                    document.querySelector("#lNameError").style.display = "none";
+                }
+            })
+
+        // validation for phone number
+        document.getElementById("phoneNumber").addEventListener("change", function () {
+            let str = document.querySelector("#phoneNumber").value;
+            if (str.length < 11) {
+                document.querySelector("#phoneNumberError").style.display = "block";
+            }
+        })
+        document.getElementById("phoneNumber").addEventListener("input", function () {
+                let str = document.querySelector("#phoneNumber").value;
+                if (str.length === 11) {
+                    document.querySelector("#phoneNumberError").style.display = "none";
+                }
+            })
+
+
+
+
+
+    </script>
+</body>
+
+</html>

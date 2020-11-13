@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
+    <title>Circle Words Cluster</title>
+    <style>
+        @font-face {
+            font-family: "Segoe UI";
+            src: url("../../assets/fonts/Segoe\ UI.ttf");
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .words-cluster-container {
+            position: relative;
+            width: 400px;
+            height: 568px;
+            margin: 100px auto;
+            background-color: #eeeeee;
+        }
+        .words-cluster-container p {
+            margin: 0;
+            padding: 0;
+            font-weight: 550;
+            font-size: 12px;
+        }
+        .words-cluster-container .plus-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            box-shadow: 
+                -4px -4px 8px 0 rgba(255, 255, 255, 1),
+                4px 4px 4px 0px rgba(0, 0, 0, 0.15);
+            display: grid;
+            place-content: center;
+            font-size: 28px;
+            color: rgba(3, 3, 3, 0.5);
+            cursor: pointer;
+            z-index: 5;
+        }
+        .words-cluster-container .red-heart {
+            animation: likeAnime 300ms ease-in-out forwards;
+            animation-iteration-count: 1;
+        }
+        .words-cluster-container .center-word {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            box-shadow: 
+                -4px -4px 8px 0 rgba(255, 255, 255, 1),
+                4px 4px 4px 0px rgba(0, 0, 0, 0.15);
+            display: grid;
+            place-content: center;
+        }
+        .synonyms-chart {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .synonyms-chart div {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            box-shadow: 
+                -4px -4px 8px 0 rgba(255, 255, 255, 1),
+                4px 4px 4px 0px rgba(0, 0, 0, 0.15);
+            display: grid;
+            place-content: center;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        @media (orientation: landscape) and (max-width: 900px) {
+            .words-cluster-container {
+                height: 100vh;
+                width: 100%;
+                margin: 0;
+            }
+            .words-cluster-container .red-heart {
+                animation-delay: 100ms;
+            }
+        }
+        @media (max-width: 641px) {
+            .words-cluster-container {
+                width: 100%;
+                height: 100vh;
+                margin: 0;
+            }
+            .words-cluster-container .red-heart {
+                animation-delay: 100ms;
+            }
+        }
+
+        @keyframes likeAnime {
+            0% {
+                font-size: 36px;
+                color: red;
+                
+            }
+            100% {
+                font-size: 28px;
+                color: red;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="words-cluster-container">
+        <div class="plus-icon"><i class="fas fa-heart"></i></div>
+        <div class="center-word">
+            <p>Introvert</p>
+        </div>
+        <div class="synonyms-list" style="display: none;">
+            <div>awkward</div>
+            <div>diffident</div>
+            <div>timid</div>
+            <div>mousy</div>
+            <div>retiring</div>
+            <div>recluse</div>
+        </div>
+        <div class="synonyms-chart" id="synonyms-chart">
+
+        </div>
+    </div>
+    
+
+    <script>
+        let synonymsNumber = document.querySelector('.synonyms-list').childElementCount;
+        if (synonymsNumber <= 8 ) {
+            grade();
+            appendChildren();
+        }
+        else if (synonymsNumber > 3) {
+            alert("Sorry, capacity is less than 9 synonyms");
+        }
+
+
+        // different functions
+
+        // Calculation our grade radians
+        function grade () {
+            let synonymsNumber = document.querySelector('.synonyms-list').childElementCount;
+            let grade = (Math.PI * 2) / synonymsNumber;
+            localStorage.setItem("gradeRadian", grade);
+        }
+  
+        // function to append children. This is the main function
+        function appendChildren () {  
+            let gradeRadian = localStorage.getItem('gradeRadian');
+            let synonymsChart = document.getElementById("synonyms-chart");
+            let deg, sinDeg, cosDeg, x, y, text, item;
+            let width = document.querySelector(".words-cluster-container").offsetWidth;
+            let height = document.querySelector(".words-cluster-container").offsetHeight;
+            
+            var textNode;
+
+            for (let i = 1; i <= synonymsNumber; i++) {
+                // getting text inside each div
+               item = i - 1; 
+               text = document.querySelectorAll(".synonyms-list div")[item].innerHTML;
+               textNode = document.createTextNode(text);
+            //    we need to create a new div node each time
+               var node = document.createElement("div");
+               node.appendChild(textNode);
+               synonymsChart.appendChild(node);
+
+            //    getting required numbers of top and left
+               deg = i * gradeRadian;
+               sinDeg = Math.sin(deg);
+               cosDeg = Math.cos(deg);
+
+
+            //    it doesn't matter id sin or cos are less than 0
+            //  i used width and height related to words-cluster-container to determin center of parent and main div;
+               x = (width / 2) + Math.floor(cosDeg * 115) + "px";
+                y = (height / 2) - Math.floor(sinDeg * 115) + "px";
+                synonymsChart.lastElementChild.style.top = y;
+                synonymsChart.lastElementChild.style.left = x; 
+
+                             
+            }
+        }
+        window.addEventListener("resize", function () {
+            document.getElementById("synonyms-chart").innerHTML = "";
+            appendChildren();
+        })
+
+
+        // to be fun for heart icon
+        document.querySelector(".words-cluster-container .plus-icon").addEventListener("click", function () {
+            document.querySelector(".words-cluster-container .plus-icon").classList.toggle("red-heart");
+        })
+    </script>
+</body>
+</html>

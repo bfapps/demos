@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Game 3 Emoji</title>
+    <style>
+        * {box-sizing: border-box}
+        body {margin: 0; padding: 0; height: 100vh;
+        display: grid;
+        grid-auto-rows: 3rem 40vh 3rem auto;
+        }
+        nav, main, main div, .options, .show {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #333333;
+            color: white;
+            font-size: medium;
+        }
+        main div {
+            width: 20vw;
+            height: 20vw;
+            font-size: 20vw;
+            color: white;
+            text-shadow: 7px 7px 5px rgba(250,250,250,0.3);
+        }
+        .show {
+            justify-content: flex-start;
+        }
+        .show div {
+            padding-left: 5px;
+            flex: 1;
+        }
+        .show button {
+            border: none;
+            color: white;
+            font-size: medium;
+            height: 100%;
+            background: #333333;
+        }
+        footer {
+            display: grid;
+            grid-template-columns: 5rem auto;
+            grid-auto-rows: auto;
+            background-color: #333333;
+            color: white;
+        }
+        .options {
+            padding: 5px;
+            flex-flow: column nowrap;
+            justify-content: start;
+        }
+        .options button {
+            flex: 1;
+            width: 100%;
+            font-size: medium;
+            background-color: #333333;
+            border: #333333 0 solid;
+            color: white;
+        }
+        .choices {
+            display: grid;
+            grid-template-columns: repeat(10, 10%);
+            grid-auto-rows: auto;
+        }
+        .choices div {
+            font-size: xx-large;
+            border-radius: 0;
+            background-color: white;
+            color: #333333;
+            border: #333333 dotted 2px;
+            border-collapse: collapse;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .information {
+            display: none;
+            padding: 10px;
+            background-color: #2d3e50;
+            color: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            animation-name: oppening;
+            animation-fill-mode: forwards;
+            animation-duration: 700ms;
+            animation-direction: normal;
+            font-size: small;
+        }
+        .information div {
+            flex: 1;
+        }
+        .close-info {
+            position: fixed;
+            bottom: 0.5rem;
+            left: 2.5%;
+            width: 95%;
+            padding: 0.5rem;
+            background-color: white;
+            color: #2d3e50;
+            text-align: center;
+        }
+        @keyframes oppening {
+            from {
+                top: -100%;
+            }
+            to {
+                top:0;
+            }
+        }
+        @media only screen and (max-width: 414px ) {
+            main div {
+                width: 50vw;
+                height: 50vw;
+                font-size: 50vw;
+            }
+            .choices {
+                grid-template-columns: repeat(5, 20%);
+                grid-auto-rows: auto;
+            }
+            .information {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body onload="takeMany(); takeTime()">
+<nav id="score">0</nav>
+<main>
+    <div id="shape">😁</div>
+</main>
+<div class="show">
+    <div>Answers:</div>
+    <div class="show-answers" id="show-answers" style="flex: 2"></div>
+    <div>
+        <button type="button" id="check" onclick="checkAnswer()">&checkmark;</button>
+        <button type="button" onclick="backwards()">&leftarrow;</button>
+    </div>
+</div>
+<footer>
+    <div class="options">
+        <button type="button" id="start" onclick="clearData(); startGame();">+</button>
+        <button type="button" id="reset" onclick="resetGame();">↻</button>
+        <button type="button" id="info" onclick="information();">¡</button>
+        <button type="button" id="close" onclick="closeGame();">×</button>
+    </div>
+    <div class="choices">
+        <div id="c1" onclick="takeAnswer(this.innerHTML)">😁</div>
+        <div id="c2" onclick="takeAnswer(this.innerHTML)">😂</div>
+        <div id="c3" onclick="takeAnswer(this.innerHTML)">🤣</div>
+        <div id="c4" onclick="takeAnswer(this.innerHTML)">😍</div>
+        <div id="c5" onclick="takeAnswer(this.innerHTML)">🤩</div>
+        <div id="c6" onclick="takeAnswer(this.innerHTML)">😅</div>
+        <div id="c7" onclick="takeAnswer(this.innerHTML)">😊</div>
+        <div id="c8" onclick="takeAnswer(this.innerHTML)">😛</div>
+        <div id="c9" onclick="takeAnswer(this.innerHTML)">🤐</div>
+        <div id="c10" onclick="takeAnswer(this.innerHTML)">😶</div>
+        <div id="c11" onclick="takeAnswer(this.innerHTML)">🙄</div>
+        <div id="c12" onclick="takeAnswer(this.innerHTML)">😥</div>
+        <div id="c13" onclick="takeAnswer(this.innerHTML)">😴</div>
+        <div id="c14" onclick="takeAnswer(this.innerHTML)">🤑</div>
+        <div id="c15" onclick="takeAnswer(this.innerHTML)">😡</div>
+        <div id="c16" onclick="takeAnswer(this.innerHTML)">😱</div>
+        <div id="c17" onclick="takeAnswer(this.innerHTML)">🤯</div>
+        <div id="c18" onclick="takeAnswer(this.innerHTML)">😭</div>
+        <div id="c19" onclick="takeAnswer(this.innerHTML)">🧐</div>
+        <div id="c20" onclick="takeAnswer(this.innerHTML)">🤢</div>
+    </div>
+</footer>
+<div class="information" id="information">
+    <div>
+        <h3>Guidance</h3>
+        <p>+ : Start Game</p>
+        <p>↻ : Reset Game</p>
+        <p>¡ : Information</p>
+        <p>× : Exit Game</p>
+        <p>&checkmark; : Submit Answer</p>
+        <p>&leftarrow; : Delete Answer</p>
+    </div>
+    <div>
+        <h3>Info</h3>
+        <p>Made By : Amir Sardar Abadi</p>
+        <p>E-Mail : amirsardarse9930@gmail.com</p>
+        <p>More Games At :</p>
+        <a href="https://brightfutureapps.github.io/index" style="color: tomato;text-decoration: none">My Website</a>
+        <p>Many thanks in advance. Please share your ideas with me.</p>
+    </div>
+    <div class="close-info" onclick="closeInfo();">Back To Game</div>
+</div>
+<div style="display: none">
+    <p id="real-answer"></p>
+    <p id="mistakes"></p>
+    <p id="many">4</p>
+    <p id="duration">2</p>
+
+    <audio id="correct"><source src="audio/correct.mp3" type="audio/mp3"></audio>
+    <audio id="wrong"><source src="audio/wrong.mp3" type="audio/mp3"></audio>
+</div>
+<script>
+    function takeMany() {
+        let many = prompt("Please tell me how many shapes you want to see. At least: 3 and at last 7. Default is 4.");
+        many = Number(many);
+        if (many >= 3 && many <= 7)
+        {
+            document.getElementById('many').innerHTML = many;
+        }
+        else {
+            takeMany();
+        }
+
+    }
+    function takeTime() {
+        let duration = prompt('Please choose your time. 1=0.5s, 2=1s, 3=1.5s, 4=2s. Default is 1s.');
+        duration = Number(duration);
+        if (duration <= 4)
+        {
+            document.getElementById('duration').innerHTML = duration;
+        }
+        else {
+            takeTime();
+        }
+    }
+    function startGame() {
+        let char = ["😁", "😂", "🤣", "😍", "🤩", "😅", "😊", "😛", "🤐", "😶", "🙄", "😥", "😴", "🤑", "😡", "😱", "🤯", "😭", "🧐", "🤢"];
+        let charN1;
+        let charN2 = 0;
+        let c = 0;
+        let duration = Number(document.getElementById('duration').innerHTML * 500);
+        let many = Number(document.getElementById('many').innerHTML);
+        let time = setInterval(show, duration)
+        let answer = document.getElementById('real-answer').innerHTML;
+        function show () {
+            if (c === many){
+                clearInterval(time);
+                clearScreen();
+                document.getElementById('start').disabled = true;
+                document.getElementById('check').disabled = false;
+
+            }
+            else {
+                charN1 = Math.floor(Math.random()* 19) + 1;
+                if (charN1 === charN2)
+                {
+                    charN1 = Math.floor(Math.random()* 19) + 1;
+                }
+                document.getElementById("shape").innerHTML = char[charN1];
+                answer += " " + char[charN1];
+                document.getElementById('real-answer').innerHTML = answer;
+                charN2 = charN1;
+                c +=1;
+            }
+        }
+    }
+    function checkAnswer() {
+        let realAnswer = document.getElementById('real-answer').innerHTML;
+        let userAnswer= document.getElementById("show-answers").innerHTML;
+        let scoreAddress = document.getElementById("score");
+        let scoreN;
+        let mistakesN;
+        if (realAnswer !== "")
+        {
+            if (realAnswer === userAnswer){
+                scoreN = Number(scoreAddress.innerHTML) + 2;
+                scoreAddress.innerHTML = scoreN;
+                document.getElementById("shape").innerHTML = "&checkmark;";
+                document.getElementById('correct').play();
+            }
+            else {
+                document.getElementById('wrong').play();
+                scoreN = Number(scoreAddress.innerHTML);
+                document.getElementById("shape").innerHTML = "×";
+                mistakesN = Number(document.getElementById('mistakes').innerHTML) + 1;
+                document.getElementById('mistakes').innerHTML = mistakesN;
+                document.getElementById('show-answers').innerHTML += " ⇐ " + realAnswer;
+                if (scoreN > 0)
+                {
+                    scoreAddress.innerHTML = scoreN - 1;
+                }
+                if (mistakesN === 3)
+                {
+                    alert("You lost. And your final score is: " + scoreN);
+                    resetGame();
+                }
+            }
+            document.getElementById('start').disabled=false;
+            document.getElementById('check').disabled = true;
+            document.getElementById('real-answer').innerHTML="";
+        }
+        else {
+            alert('Please start the game');
+        }
+
+    }
+    function backwards() {
+        let str = document.getElementById('show-answers').innerHTML;
+        let lastIndex = str.lastIndexOf(" ");
+        document.getElementById('show-answers').innerHTML= str.substring(0, lastIndex);
+    }
+    function backward() {
+        document.getElementById("show-answers").innerHTML= "";
+    }
+    function clearData() {
+        document.getElementById('real-answer').innerHTML="";
+        backward();
+    }
+    function clearScreen() {
+        document.getElementById("shape").innerHTML= "";
+    }
+    function resetGame() {
+        clearData();
+        clearScreen();
+        document.getElementById("score").innerHTML="0";
+        document.getElementById('mistakes').innerHTML = "";
+    }
+    function information() {
+        document.getElementById('information').style.display= "flex";
+        document.getElementById('information').style.animationDirection="normal";
+    }
+    function closeInfo() {
+        document.getElementById('information').style.display="none";
+    }
+    function takeAnswer(userAnswer) {
+        document.getElementById("show-answers").innerHTML +=" " + userAnswer;
+    }
+    function closeGame() {
+        let scoreN = document.getElementById('score').innerHTML;
+        alert("Good Bye. Your score is: " + scoreN);
+        close();
+        open("game-3-index.html");
+    }
+</script>
+</body>
+</html>
