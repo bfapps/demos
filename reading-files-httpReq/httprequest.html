@@ -4,22 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .music-detail-container {
+            padding: 16px;
+            background-color: #f1f1f1;
+            width: 450px;
+            margin: 20px;
+        }
+        .music-detail-container h4 {
+            cursor: pointer;
+        }
+    </style>
 </head>
+
 <body>
-    <button type="button" onclick="main()">click to sho the results</button>
-    <p id="file-text"></p>
+    <div class="music-detail-container">
+        <h4 title="slow down">slow down</h4>
+        <p>Selena Gomez</p>
+    </div>
+    <div class="music-detail-container">
+        <h4 title="same old love">same old love</h4>
+        <p>Selena Gomez</p>
+    </div>
+
+
+    <button type="button" onclick="main('artists.xml', findArtist,'Selena-Gomez', 'love-you-like-a-love-song')">click to sho the results</button>
+    <p id="artist"></p>
+    <p id="song"></p>
+    <p id="url"></p>
+    <div id="youtube"></div>
 
 
     <script>
-        function main() {
+        let searchInfo = ['song-name', 'artist-name'];
+        document.querySelectorAll('.music-detail-container h4').forEach(function (item) {
+            item.addEventListener('click', function (event) {
+                let myDoc = event.target;
+                searchInfo[0] = myDoc.innerHTML;
+                searchInfo[1] = myDoc.parentNode.getElementsByTagName('p')[0].innerHTML;
+                searchInfo[0] = searchInfo[0].replace(/ /g, '-').toLowerCase();
+                searchInfo[1] = searchInfo[1].replace(/ /g,'-').toLowerCase();
+                main('artists.xml', findArtist)
+            })
+        })
+        function main(url, cFunction) {
             var xhttp = new XMLHttpRequest();
+            let artist1 = artist;
+            let song1 = song;
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById('file-text').innerHTML = this.responseText;
+                    cFunction (this);
+                    
                 }
             };
-            xhttp.open("GET", "./man.txt", true);
+            xhttp.open("GET", url, true);
             xhttp.send(); 
+        }
+
+        function findArtist (xml) {
+            var xmlDoc = xml.responseXML;
+            let artistName = xmlDoc.getElementsByTagName(searchInfo[1]);
+            alert(searchInfo[0]);
+            let songName = artistName[0].getElementsByTagName(searchInfo[0]);
+            
+            let urlName = songName[0].getElementsByTagName("url")[0].innerHTML;
+            document.getElementById('url').innerHTML = urlName;
         }
     </script>
 </body>
