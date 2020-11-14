@@ -8,36 +8,46 @@
         * {
             box-sizing: border-box;
         }
+        .flex-container {
+            display: flex;
+        }
         .music-detail-container {
             padding: 16px;
             background-color: #f1f1f1;
-            width: 450px;
+            width: 300px;
             margin: 20px;
         }
         .music-detail-container h4 {
             cursor: pointer;
+            text-transform: capitalize;
+        }
+        .table a {
+            display: block;
+        }
+        .table span {
+            text-transform: capitalize;
         }
     </style>
 </head>
 
 <body>
-    <div class="music-detail-container">
-        <h4 title="slow down">slow down</h4>
-        <p>Selena Gomez</p>
+    <div class="flex-container">
+        <div class="music-detail-container">
+            <h4 title="slow down">slow down</h4>
+            <p>Selena Gomez</p>
+        </div>
+        <div class="music-detail-container">
+            <h4 title="same old love">same old love</h4>
+            <p>Selena Gomez</p>
+        </div>
     </div>
-    <div class="music-detail-container">
-        <h4 title="same old love">same old love</h4>
-        <p>Selena Gomez</p>
-    </div>
-
-
-    <button type="button" onclick="main('artists.xml', findArtist,'Selena-Gomez', 'love-you-like-a-love-song')">click to sho the results</button>
+    
     
     <div class="table">
-        <p id="artist"></p>
-        <p id="song"></p>
-        <a id="url"></a>
-        <a id="youtube"></a>
+        <p id="artist"><span>Artist: </span><span></span></p>
+        <p id="song"><span>song: </span><span></span></p>
+        <p id="url"><span>Url: </span><a href=""></a></p>
+        <p id="youtube"><span>YouTube Url: </span><a href=""></a></p>
     </div>
 
 
@@ -49,6 +59,10 @@
                 let myDoc = event.target;
                 searchInfo[0] = myDoc.parentNode.getElementsByTagName('p')[0].innerHTML;
                 searchInfo[1] = myDoc.innerHTML;
+
+                tableInfo[0] = searchInfo[0];
+                tableInfo[1] = searchInfo[1];
+
                 searchInfo[0] = searchInfo[0].replace(/ /g, '-').toLowerCase();
                 searchInfo[1] = searchInfo[1].replace(/ /g,'-').toLowerCase();
                 main('artists.xml', findArtist)
@@ -76,7 +90,18 @@
 
             let youtubeName = songName[0].getElementsByTagName("youtube")[0].innerHTML;
 
-            tableInfo = [artistName, songName, urlName, youtubeName];
+            tableInfo[2] = urlName;
+            tableInfo[3] = youtubeName;
+            
+            setTable();
+        }
+
+        function setTable () {
+            let table = document.querySelector('.table').children;
+            table[0].getElementsByTagName('span')[1].innerHTML = tableInfo[0];
+            table[1].getElementsByTagName('span')[1].innerHTML = tableInfo[1];
+            table[2].getElementsByTagName('a')[0].innerHTML = tableInfo[2];
+            table[3].getElementsByTagName('a')[0].innerHTML = tableInfo[3];
         }
     </script>
 </body>
