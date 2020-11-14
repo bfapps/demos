@@ -27,12 +27,36 @@
         .table span {
             text-transform: capitalize;
         }
+        form {
+            padding: 10px 20px;
+            background-color: #eeeeee;
+        }
+        form label, form input {
+            display: block;
+        }
+        form label {
+            margin: 8px 0;
+        }
+        form input {
+            margin-bottom: 20px;
+            width: 50%;
+            height: 30px;
+        }
     </style>
 </head>
 
 <body>
 
-    <button type="button" onclick="main('artists.xml', addXml)">Add Xml Data</button>
+    <form action="addDataToXmlArtists.php" method="POST">
+        <label for="song-name">Song Name</label>
+        <input type="text" name="song-name">
+        <label for="url-name">Url</label>
+        <input type="text" name="url-name">
+        <label for="youtube-name">YouTube</label>
+        <input type="text" name="youtube-name">
+
+        <input type="submit" value="Submit Data">
+    </form>
 
 
     <div class="flex-container">
@@ -60,20 +84,10 @@
         let tableInfo = ['artist', 'song', 'url', 'youtube'];
         let addXmlInfo = ['artist', 'song', 'url', 'youtube'];
 
-        function addXml(xml) {
-            let xmlDoc = xml.responseXML;
-            let songName = window.prompt("song name:");
-            songName = songName.replace(' ', '-').toLowerCase();
-            let urlName = window.prompt('url');
-            let youtubeName = window.prompt('youtube');
-
-            let artistName = xmlDoc.getElementsByTagName('selena-gomez')[0];
-            let text ='<url>' + urlName + '</url> <youtube>' + youtubeName + '</youtube>';
-            let songTagName = document.createElement(songName);
-            let ama = document.createTextNode(text);
-            artistName.appendChild(ama);
-            
-        }
+        // change input songName 
+        document.querySelectorAll('form input')[0].addEventListener('input', function () {
+            document.getElementsByName('song-name')[0].value = document.getElementsByName('song-name')[0].value.replace(/ /g, "-").toLowerCase();
+        })
 
         document.querySelectorAll('.music-detail-container h4').forEach(function (item) {
             item.addEventListener('click', function (event) {
