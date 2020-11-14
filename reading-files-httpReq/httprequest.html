@@ -31,6 +31,10 @@
 </head>
 
 <body>
+
+    <button type="button" onclick="main('artists.xml', addXml)">Add Xml Data</button>
+
+
     <div class="flex-container">
         <div class="music-detail-container">
             <h4 title="slow down">slow down</h4>
@@ -54,6 +58,23 @@
     <script>
         let searchInfo = ['artis-name', 'song-name'];
         let tableInfo = ['artist', 'song', 'url', 'youtube'];
+        let addXmlInfo = ['artist', 'song', 'url', 'youtube'];
+
+        function addXml(xml) {
+            let xmlDoc = xml.responseXML;
+            let songName = window.prompt("song name:");
+            songName = songName.replace(' ', '-').toLowerCase();
+            let urlName = window.prompt('url');
+            let youtubeName = window.prompt('youtube');
+
+            let artistName = xmlDoc.getElementsByTagName('selena-gomez')[0];
+            let text ='<url>' + urlName + '</url> <youtube>' + youtubeName + '</youtube>';
+            let songTagName = document.createElement(songName);
+            let ama = document.createTextNode(text);
+            artistName.appendChild(ama);
+            
+        }
+
         document.querySelectorAll('.music-detail-container h4').forEach(function (item) {
             item.addEventListener('click', function (event) {
                 let myDoc = event.target;
