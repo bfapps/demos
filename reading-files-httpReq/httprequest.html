@@ -54,6 +54,7 @@
         <input type="text" name="url-name">
         <label for="youtube-name">YouTube</label>
         <input type="text" name="youtube-name">
+        <input type="text" name="song-tag-name" id="song-tag-name" style="display: none;">
 
         <input type="submit" value="Submit Data">
     </form>
@@ -86,7 +87,7 @@
 
         // change input songName 
         document.querySelectorAll('form input')[0].addEventListener('input', function () {
-            document.getElementsByName('song-name')[0].value = document.getElementsByName('song-name')[0].value.replace(/ /g, "-").toLowerCase();
+            document.getElementById('song-tag-name').value = document.getElementsByName('song-name')[0].value.replace(/ /g, "-").toLowerCase();
         })
 
         document.querySelectorAll('.music-detail-container h4').forEach(function (item) {

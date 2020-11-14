@@ -2,6 +2,9 @@
 
 <selena-gomez>
     <love-you-like-a-love-song>
+        <song-name>
+            love you like a love song
+        </song-name>
         <url>
             https://cdn.begoosh.com/Music/Categories/Foreign/Amirica/01%20love%20you%20like%20a%20love%20song.mp3
         </url>
@@ -10,6 +13,9 @@
         </youtube>
     </love-you-like-a-love-song>
     <same-old-love>
+        <song-name>
+            same old love
+        </song-name>
         <url>
             https://ts1.tarafdari.com/contents/user239177/content-sound/selena_gomez-same_old_love.mp3
         </url>
@@ -17,4 +23,6 @@
             https://www.youtube.com/watch?v=1IdG-t22VmY
         </youtube>
     </same-old-love>
+<slow-down> <song-name>slow down</song-name> <url>https://cdn.begoosh.com/Music/Categories/Foreign/Amirica/09%20Slow%20Down.mp3</url> <youtube>https://www.youtube.com/watch?v=zGEf8dXN2sU</youtube></slow-down>
+
 </selena-gomez>

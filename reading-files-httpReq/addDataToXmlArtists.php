@@ -1,13 +1,16 @@
 <?php 
 
 $songName = $_POST['song-name'];
+$songTagName = $_POST['song-tag-name'];
 $urlName = $_POST['url-name'];
 $youtubeName = $_POST['youtube-name'];
 
-echo $songName;
-// $myXmlFile = fopen('artists.xml', 'a');
+$myXmlFile = fopen('artists.xml', 'a');
 
-// $text = ''
+$text = '<' . $songTagName . '> ' . '<song-name>' . $songName . "</song-name> <url>" . $urlName . "</url> <youtube>" . $youtubeName . '</youtube>' . '</' . $songTagName . '>';
+
+fwrite($myXmlFile, $text);
+fclose($myXmlFile);
 
 
 ?>
