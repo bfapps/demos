@@ -61,14 +61,14 @@
 
 
     <div class="flex-container">
-        <div class="music-detail-container">
-            <h4 title="slow down">slow down</h4>
+        <!-- <div class="music-detail-container">
+            <h4>slow down</h4>
             <p>Selena Gomez</p>
         </div>
         <div class="music-detail-container">
-            <h4 title="same old love">same old love</h4>
+            <h4>same old love</h4>
             <p>Selena Gomez</p>
-        </div>
+        </div> -->
     </div>
     
     
@@ -85,25 +85,50 @@
         let tableInfo = ['artist', 'song', 'url', 'youtube'];
         let addXmlInfo = ['artist', 'song', 'url', 'youtube'];
 
+        // function to create div
+        window.onload = function () {
+            main('artists.xml', createDiv);
+        }
+        function createDiv (xml) {
+            let xmlDoc = xml.responseXML;
+            let artist = xmlDoc.getElementsByTagName('selena-gomez')[0];
+            let childrenNumber = artist.childElementCount; 
+            for (let i=0; i<childrenNumber; i++) {
+                let songName = artist.children[i].children[0].textContent.replace(/    /g,"");
+                let songUrl = artist.children[i].children[1].innerHTML.replace(/    /g, "");
+                let songYoutube = artist.children[i].children[2].innerHTML.replace(/    /g, "");
+
+                let newDiv = document.createElement('div');
+                newDiv.setAttribute('class', 'music-detail-container');
+                newDiv.innerHTML = "<h4>" + songName + "</h4>\n<p>Selena Gomez</p>";
+                document.querySelector('.flex-container').appendChild(newDiv);
+            }
+            findDetail();
+        }
+
+
         // change input songName 
         document.querySelectorAll('form input')[0].addEventListener('input', function () {
             document.getElementById('song-tag-name').value = document.getElementsByName('song-name')[0].value.replace(/ /g, "-").toLowerCase();
         })
 
-        document.querySelectorAll('.music-detail-container h4').forEach(function (item) {
-            item.addEventListener('click', function (event) {
-                let myDoc = event.target;
-                searchInfo[0] = myDoc.parentNode.getElementsByTagName('p')[0].innerHTML;
-                searchInfo[1] = myDoc.innerHTML;
+        function findDetail (event) {
+            document.querySelectorAll('.music-detail-container h4').forEach(function (item) {
+                item.addEventListener('click', function (event) {
+                    let myDoc = event.target;
+                    searchInfo[0] = myDoc.parentNode.getElementsByTagName('p')[0].innerHTML;
+                    searchInfo[1] = myDoc.innerHTML;
 
-                tableInfo[0] = searchInfo[0];
-                tableInfo[1] = searchInfo[1];
+                    tableInfo[0] = searchInfo[0];
+                    tableInfo[1] = searchInfo[1];
 
-                searchInfo[0] = searchInfo[0].replace(/ /g, '-').toLowerCase();
-                searchInfo[1] = searchInfo[1].replace(/ /g,'-').toLowerCase();
-                main('artists.xml', findArtist)
+                    searchInfo[0] = searchInfo[0].replace(/ /g, '-').toLowerCase().replace(/\n/g, "");
+                    searchInfo[1] = searchInfo[1].replace(/ /g, '-').toLowerCase().replace(/\n/g, "");
+                    main('artists.xml', findArtist)
+                })
             })
-        })
+        }
+        
         function main(url, cFunction) {
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
@@ -115,13 +140,13 @@
             xhttp.open("GET", url, true);
             xhttp.send(); 
         }
-        
+
         function findArtist (xml) {
             let xmlDoc = xml.responseXML;
             let artistName = xmlDoc.getElementsByTagName(searchInfo[0]);
-
             let songName = artistName[0].getElementsByTagName(searchInfo[1]);
-            
+            console.log(searchInfo[1] + "\n" + artistName[0].innerHTML + '\n');
+
             let urlName = songName[0].getElementsByTagName("url")[0].innerHTML;
 
             let youtubeName = songName[0].getElementsByTagName("youtube")[0].innerHTML;

@@ -12,6 +12,7 @@
             https://www.youtube.com/watch?v=1IdG-t22VmY
         </youtube>
     </love-you-like-a-love-song>
+
     <same-old-love>
         <song-name>
             same old love
@@ -20,9 +21,31 @@
             https://ts1.tarafdari.com/contents/user239177/content-sound/selena_gomez-same_old_love.mp3
         </url>
         <youtube>
-            https://www.youtube.com/watch?v=1IdG-t22VmY
+            https://www.youtube.com/watch?list=PL8gsUVA7RytWQseFhi-Tpz3OpB3wycC_J&amp;v=naKhF6G36rM
         </youtube>
     </same-old-love>
-<slow-down> <song-name>slow down</song-name> <url>https://cdn.begoosh.com/Music/Categories/Foreign/Amirica/09%20Slow%20Down.mp3</url> <youtube>https://www.youtube.com/watch?v=zGEf8dXN2sU</youtube></slow-down>
 
+    <slow-down> 
+        <song-name>
+            slow down
+        </song-name> 
+        <url>
+            https://cdn.begoosh.com/Music/Categories/Foreign/Amirica/09%20Slow%20Down.mp3
+        </url> 
+        <youtube>
+            https://www.youtube.com/watch?v=zGEf8dXN2sU
+        </youtube>
+    </slow-down>
+
+    <wolves>
+        <song-name>
+            wolves
+        </song-name>
+        <url>
+            https://dl.baarzesh.net/music/2020/8/Previous/Wolves-SELENA-GOMEZ-ft-MARSHMELLO.mp3
+        </url>
+        <youtube>
+            https://www.youtube.com/watch?v=cH4E_t3m3xM
+        </youtube>
+    </wolves>
 </selena-gomez>
