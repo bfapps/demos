@@ -72,6 +72,11 @@
     <div class="flex-container">
 
     </div>
+    <div class="div">
+        <button type="button" id="pasue-btn" onclick="selectSong()">pause</button>
+        <button type="button" class="for-ward" id="forward-btn">forward</button>
+        <button type="button" class="back-ward" id="backward-btn">backwards</button>
+    </div>
 
 
     <script>
@@ -79,6 +84,9 @@
         let flexContainer = document.querySelector('.flex-container');
         let h4SongName;
         let pSingerName;
+        let changeSongNumber;
+        let newSongNumber;
+
         window.onload = function () {
             getDetail();
         }
@@ -168,7 +176,7 @@
             // setting default values to work as global variables
         let songUrl = new Audio("https://dl.baarzesh.net/music/2020/8/Previous/Wolves-SELENA-GOMEZ-ft-MARSHMELLO.mp3");
         let validationToPauseOrPlay = "pause";
-
+        // this function is to check plaing state when clicking on h4
         function pauseIfPlaying () {
             if (validationToPauseOrPlay === "playing") {
                 validationToPauseOrPlay = "pause";
@@ -177,6 +185,7 @@
             songUrl = new Audio(songsInfo.url);
             selectSong ();
         }
+        // this function is to play or pause by play-btn or play after selecting by clicking on h4
         function selectSong () {
             if (validationToPauseOrPlay === "playing") {
                 validationToPauseOrPlay = "pause";
@@ -187,6 +196,39 @@
                 songUrl.play();
             }
         }
+
+        // this function is to go forward or backward
+        document.getElementById('backward-btn').addEventListener('click', function () {
+            changeSongNumber = -1;
+            fetchFunction('artists.json', backForward)
+        })
+        document.getElementById('forward-btn').addEventListener('click', function () {
+            changeSongNumber = 1; 
+            fetchFunction('artists.json', backForward)  
+        })
+
+        // function for forward and backward buttons
+        function backForward (songs) {
+            let CurrentSongNumber = Number(songsInfo.number);
+            if (CurrentSongNumber >= 1 && changeSongNumber === -1) {
+                newSongNumber = CurrentSongNumber - 1;
+                fetchFunction('artists.json', loopToNumber);
+            }
+            else if (CurrentSongNumber < songs.length - 1 && changeSongNumber === 1) {
+                newSongNumber = CurrentSongNumber + 1;
+                fetchFunction('artists.json', loopToNumber);
+            }
+            
+        }
+        function loopToNumber (songs) {
+                for (let i = 0; i < songs.length; i++) {
+                    if (newSongNumber === Number(songs[i].number)) {
+                        songsInfo = songs[i];
+                        console.log(songsInfo.name);
+                    }
+                }
+                pauseIfPlaying();
+            }
     </script>
 </body>
 
