@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>music player mobile</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js"
+        integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a"
+        crossorigin="anonymous"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --img-size: 70px;
+            --h5-margin: 8px;
+        }
+
+        /* this is just kidding */
+        body {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #eeeeee;
+            overflow-x: hidden;
+        }
+
+        .musicbox {
+            position: relative;
+            width: 375px;
+            /* height: 145vh; */
+            max-height: 152vh;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .subtitle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: #eeeeee;
+            z-index: 20;
+            padding: 10px 20px;
+            display: none;
+
+        }
+
+        .subtitle-container-active {
+            display: block;
+        }
+
+        .exact-subtitle-container {
+            overflow-x: hidden;
+            overflow-y: auto;
+            width: 100%;
+            height: 260px;
+            line-height: 40px;
+        }
+
+        .subtitle-container-icons {
+            height: 30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #c0c0cd;
+            font-size: 28px;
+            padding-top: 10px;
+            color: #606060;
+        }
+
+        .musicbox-container-1 {
+            width: 320px;
+            height: 104px;
+            display: flex;
+        }
+
+        .music-img-container {
+            width: 100px;
+            display: grid;
+            place-content: center;
+        }
+
+        .music-img-container img {
+            width: var(--img-size);
+            height: var(--img-size);
+            border-radius: 50%;
+        }
+
+        .music-detail-container {
+            /* width: calc(375px - 150px); */
+            max-width: 375px;
+            min-width: 225px;
+            padding-right: 10px;
+            z-index: 25;
+        }
+
+        .music-detail-container h4 {
+            margin-bottom: 4px;
+            cursor: pointer;
+        }
+
+        .music-detail-container p {
+            font-size: 14px;
+        }
+
+        #main-music p::after {
+            content: " (Now Playing)";
+        }
+
+        .music-detail-container h4,
+        .music-detail-container p {
+            color: #606060;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-transform: capitalize;
+            z-index: 24;
+        }
+
+        .musicbox-player-container {
+            width: 100%;
+            height: 320px;
+            display: grid;
+            place-content: center;
+            position: relative;
+        }
+
+        .musicbox-surrending-circle,
+        .musicbox-middle-circle {
+            position: relative;
+            width: 310px;
+            height: 310px;
+            border-radius: 50%;
+            box-shadow:
+                4px 4px 4px rgba(0, 0, 0, 0.1),
+                -4px -4px 4px #fff;
+            display: grid;
+            place-content: center;
+        }
+
+        .musicbox-middle-circle {
+            width: 130px;
+            height: 130px;
+            font-size: 52px;
+            color: #00dbc9;
+            cursor: pointer;
+        }
+
+        .option-btn {
+            font-size: 35px;
+            color: #606060;
+            cursor: pointer;
+        }
+
+        .musicbox-forward,
+        .musicbox-backward {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: grid;
+            place-content: center;
+            color: rgb(250, 44, 113);
+            ;
+        }
+
+        .musicbox-forward {
+            right: 25px;
+        }
+
+        .musicbox-backward {
+            left: 25px;
+        }
+
+        .musicbox-up,
+        .musicbox-down {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: grid;
+            place-content: center;
+            color: hotpink;
+        }
+
+        .musicbox-up {
+            top: 25px;
+        }
+
+        .musicbox-down {
+            bottom: 25px;
+        }
+
+        /* progress bar */
+        .progress-bar {
+            position: relative;
+            width: 90%;
+            margin: 10px auto;
+            height: 8px;
+            box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.1),
+                inset -4px -4px 4px #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        .real-progress-bar {
+            width: 65%;
+            height: 50%;
+            margin: 0 4px;
+            background-color: rgb(134, 223, 1);
+            /* box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.1),
+            inset -2px -2px 4px #fff; */
+        }
+
+        /* conteiner 3 */
+        .musicbox-container-3 {
+            height: 90px;
+            width: 100%;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px #cccccc solid;
+            box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .extra-icon-holder {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: grid;
+            place-content: center;
+            font-size: 35px;
+            color: #606060;
+            box-shadow:
+                4px 4px 4px rgba(0, 0, 0, 0.1),
+                -4px -4px 4px #fff;
+            cursor: pointer;
+        }
+
+        /* music box 4 */
+        .musicbox-container-4 {
+            height: 300px;
+            max-height: 360px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* for like icon */
+        #like-icon {
+            transition: color 300ms;
+        }
+
+        .red-like-icon {
+            color: red;
+        }
+
+        /* for play icon */
+        #pasue-btn {
+            transition: color 300ms;
+        }
+
+        .blue-pasue-btn {
+            color: purple;
+        }
+
+        a {
+            color: red;
+        }
+
+        @media (orientation: landscape) {
+            .musicbox {
+                height: 700px;
+                max-height: 900px;
+            }
+
+            .musicbox-container-4 {
+                max-height: 200px;
+            }
+        }
+
+        @media (max-width: 374px) {
+            .musicbox {
+                width: 100%;
+            }
+
+            .musicbox-surrending-circle {
+                width: 290px;
+                height: 290px;
+            }
+
+            .music-detail-container {
+                /* width: calc(375px - 150px); */
+                padding-right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="musicbox">
+
+        <div class="musicbox-container-1" id="main-music">
+            <div class="music-img-container">
+                <img src="" alt="music image">
+            </div>
+            <div class="music-detail-container">
+                <h4 id="main-music-name"></h4>
+                <p></p>
+            </div>
+        </div>
+        <div class="musicbox-container-2">
+            <div class="musicbox-player-container">
+                <div class="subtitle-container">
+                    <div class="exact-subtitle-container">
+                        Subtitle Must Be Here
+
+                    </div>
+                    <div class="subtitle-container-icons">
+                        <div class="close-subtitle"><i class="fa fa-window-close" aria-hidden="true"></i></div>
+                        <div class="copy-subtitle"><i class="fas fa-copy"></i></div>
+                    </div>
+                </div>
+                <div class="musicbox-surrending-circle">
+                    <div class="musicbox-middle-circle" id="pasue-btn"><i
+                            class="fas fa-play-circle    "></i></div>
+                    <div class="musicbox-forward option-btn" id="forward-btn"><i class="fas fa-forward"></i></div>
+                    <div class="musicbox-backward option-btn" id="backward-btn"><i class="fas fa-backward"></i></div>
+                    <div class="musicbox-up option-btn" id="caption-btn"><i class="fas fa-closed-captioning"></i></div>
+                    <div class="musicbox-down option-btn"><a id="youtube-link" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="progress-bar">
+            <div class="real-progress-bar"></div>
+        </div>
+        <div class="musicbox-container-3">
+            <div class="extra-icon-holder" id="like-icon"><i class="fas fa-heart    "></i></div>
+            <div class="extra-icon-holder" style="color: rgb(151, 151, 2);"><i class="fa fa-search"
+                    aria-hidden="true"></i></div>
+            <div class="extra-icon-holder"><a id="download-link" style="color: dodgerblue;" id="download-link"><i class="fas fa-download    "></i></a></div>
+        </div>
+
+        <!-- real music box -->
+        <div class="musicbox-container-4">
+
+        </div>
+    </div>
+
+    <textarea value="Hello World" id="mySubtitleInput" style="display:none" cols="30" rows="10"></textarea>
+    <script src="js/musicplayer.js"></script>
+    <script>
+        // like function
+        document.getElementById("like-icon").addEventListener('click', function () {
+            document.getElementById('like-icon').classList.toggle('red-like-icon');
+        })
+
+        // play function
+        document.getElementById("pasue-btn").addEventListener('click', function () {
+            document.getElementById('pasue-btn').classList.toggle('blue-pasue-btn');
+        })
+
+        // to show subtitle
+        document.getElementById("caption-btn").addEventListener("click", function () {
+            document.querySelector('.subtitle-container').style.display = "block";
+        })
+        document.querySelector('.close-subtitle').addEventListener("click", function () {
+            document.querySelector('.subtitle-container').style.display = "none";
+        })
+        // to copy subtitle option
+        document.querySelector(".copy-subtitle").addEventListener("click", function () {
+            alert("copied")
+        })
+        // function open youtube link 
+        // function openYouTube() {
+        //     window.open("https://www.youtube.com/watch?v=1IdG-t22VmY");
+        // }
+
+    </script>
+</body>
+
+</html>

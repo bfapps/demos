@@ -1,0 +1,42 @@
+[
+    {
+        "singer": "slena gomez",
+        "name": "wolves",
+        "url": "https://dl.baarzesh.net/music/2020/8/Previous/Wolves-SELENA-GOMEZ-ft-MARSHMELLO.mp3",
+        "youtube": "https: //www.youtube.com/watch?v=cH4E_t3m3xM",
+        "src": "../assets/img/musicplayer/unnownmusic.png",
+        "number": "0"
+    },
+    {
+        "singer": "slena gomez",
+        "name": "love you like a love song",
+        "url": "https://cdn.begoosh.com/Music/Categories/Foreign/Amirica/01%20love%20you%20like%20a%20love%20song.mp3",
+        "youtube": "https://www.youtube.com/watch?v=1IdG-t22VmY",
+        "src": "../assets/img/musicplayer/unnownmusic.png",
+        "number": "1"
+    },
+    {
+        "singer": "slena gomez",
+        "name": "slow down",
+        "url": "https://cdn.begoosh.com/Music/Categories/Foreign/Amirica/09%20Slow%20Down.mp3",
+        "youtube": "https://www.youtube.com/watch?v=zGEf8dXN2sU",
+        "src": "../assets/img/musicplayer/unnownmusic.png",
+        "number": "2"
+    },
+    {
+        "singer": "slena gomez",
+        "name": "same old love",
+        "url": "https://ts1.tarafdari.com/contents/user239177/content-sound/selena_gomez-same_old_love.mp3",
+        "youtube": "https://www.youtube.com/watch?list=PL8gsUVA7RytWQseFhi-Tpz3OpB3wycC_J&v=naKhF6G36rM",
+        "src": "../assets/img/musicplayer/unnownmusic.png",
+        "number": "3"
+    },
+    {
+        "singer": "slena gomez",
+        "name": "the heart wants what it wants",
+        "url": "https://cdn.begoosh.com/Music/Categories/Foreign/Amirica/01%20The%20Heart%20Wants%20What%20It%20Wants.mp3",
+        "youtube": "https://www.youtube.com/watch?v=ij_0p_6qTss&list=RDL1q4lp9-iqE&index=6",
+        "src": "../assets/img/musicplayer/unnownmusic.png",
+        "number": "4"
+    }
+]
