@@ -135,11 +135,18 @@
         // the function to filter based on"song name" & "singer name"
         function findMusic (songs) {
             for(let i = 0; i < songs.length; i++) {
-                if (songs[i].name === h4SongName) {
+                if (songs[i].name === h4SongName && songs[i].singer === pSingerName) {
                     songsInfo = songs[i];
                 }
             }
-            console.log(songsInfo.name, songsInfo.singer, songsInfo.youtube, songsInfo.url);
+            if (songsInfo.name === h4SongName && songsInfo.singer === pSingerName)
+            {
+                console.log(songsInfo.name,"\n",songsInfo.singer,"\n",songsInfo.youtube,"\n",songsInfo.url);
+            }
+            else {
+                console.log("Song Not Found");
+            }
+            
         }
 
     </script>
