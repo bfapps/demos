@@ -108,7 +108,8 @@
             document.querySelectorAll(".music-detail-container h4").forEach( function (item) {
                 item.addEventListener('click', function (event) {
                     h4SongName = event.target.innerHTML;
-                    console.log(h4SongName);
+                    pSingerName = event.target.parentNode.children[1].textContent;
+                    console.log(h4SongName, pSingerName);
                     // triggers the function to find the music based of name of the music
                     fetchFunction('artists.json', findMusic)
                 })
@@ -124,13 +125,12 @@
 
         // the function to filter based on song "name"
         function findMusic (songs) {
-            console.log(songs.length);
             for(let i = 0; i < songs.length; i++) {
                 if (songs[i].name === h4SongName) {
                     songInfo = songs[i];
                 }
             }
-            console.log(songInfo[1]);
+            console.log(songInfo.name);
         }
 
     </script>
