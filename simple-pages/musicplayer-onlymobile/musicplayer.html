@@ -58,18 +58,22 @@
 </head>
 
 <body>
-    <div class="flex-container">
+    <div class="musicbox-container-4">
 
     </div>
 
 
     <script>
+
+        localStorage.setItem('songFileAddress', "artists/selena-gomez/songs.json");
+        const songFileAddress = localStorage.getItem('songFileAddress');
         let songInfo;
-        let flexContainer = document.querySelector('.flex-container');
+        let flexContainer = document.querySelector('.musicbox-container-4');
         let h4SongName;
         let pSingerName;
         window.onload = function () {
-            getDetail();
+            // this is the first function that invokes just as page lodes
+            fetchFunction(songFileAddress, createDiv);
         }
 
         function fetchFunction(url, cFunction) {
@@ -79,10 +83,6 @@
                 let song = json;
                 cFunction(song);
             })
-        }
-        // this is the first function that invokes just as page lodes
-        function getDetail() {
-            fetchFunction("artists.json", createDiv);
         }
 
         // we create the div containers with specific class and put the details in it
@@ -117,7 +117,7 @@
                     h4SongName = event.target.innerHTML;
                     console.log(h4SongName);
                     // triggers the function to find the music based of name of the music
-                    fetchFunction('artists.json', findMusic)
+                    fetchFunction(songFileAddress, findMusic)
                 })
             })
             document.querySelectorAll(".music-detail-container p").forEach(function (item) {
