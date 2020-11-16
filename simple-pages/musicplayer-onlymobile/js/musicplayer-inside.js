@@ -176,12 +176,17 @@ function forOrBackward (songs) {
 
 function findSub () {
     if (songInfo.sub.length > 5) {
-        fetch(songInfo.sub).then(function (response) {
-            return response.json()
-        }).then(function (json) {
-            let sub = json;
-            changeSub(sub);
-        })
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                changeSub(this)
+            }
+        };
+        xhttp.open("GET", songInfo.sub, true);
+        // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send();
+        
     }
 
     else if (songInfo.sub.length < 5) {
@@ -189,6 +194,7 @@ function findSub () {
     }
 }
 function changeSub (sub) {
-    let subText = sub[0].text;
+    let subDoc = sub.responseXML;
+    let subText = subDoc.getElementsByTagName("text")[0].innerHTML;
     document.querySelector('.exact-subtitle-container').innerHTML = subText;
 }
