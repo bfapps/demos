@@ -8,14 +8,9 @@
         * {
             box-sizing: border-box;
         }
-        body {
-            margin: 0;
-            overflow-x: hidden;
-        }
+    
         .flex-container {
-            margin: 0 auto;
             display: flex;
-            flex-wrap: wrap;
         }
         .musicbox-container-1 {
             display: flex;
@@ -25,7 +20,7 @@
         
         .music-detail-container {
             min-width: 200px;
-            max-width: 200px;
+            max-width: 300px;
             padding: 10px;
         }
         .music-img-container {
@@ -40,10 +35,6 @@
             padding: 0;
             font-size: 15px;
             font-weight: 600;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            /* overflow-x: auto; */
-            overflow: hidden;
         }
         .music-detail-container p {
             text-transform: capitalize;
@@ -66,7 +57,7 @@
     
 
     <script>
-        let songsInfo;
+        let songInfo;
         let flexContainer = document.querySelector('.flex-container');
         let h4SongName;
         let pSingerName;
@@ -89,7 +80,6 @@
 
         // we create the div containers with specific class and put the details in it
         function createDiv(songs) {
-            flexContainer.innerHTML = "";
             for (let i = 0; i < songs.length; i++) {
                 let divContainer = document.createElement('div');
                 let imageContainer = document.createElement('div');
@@ -117,41 +107,30 @@
         function listener() {
             document.querySelectorAll(".music-detail-container h4").forEach( function (item) {
                 item.addEventListener('click', function (event) {
-                    // getting song name and singer name
                     h4SongName = event.target.innerHTML;
-                    pSingerName = event.target.parentNode.children[1].textContent;
-                    console.log(h4SongName, pSingerName);
-                    // triggers the function to find the music
-                    fetchFunction('artists.json', findMusic);
+                    console.log(h4SongName);
+                    // triggers the function to find the music based of name of the music
+                    fetchFunction('artists.json', findMusic)
                 })
             })
             document.querySelectorAll(".music-detail-container p").forEach( function (item) {
                 item.addEventListener('click', function (event) {
-                    // getting song name and singer name
-                    h4SongName = event.target.parentNode.children[0].textContent;
                     pSingerName = event.target.innerHTML;
-                    // triggers the function to find the musics of that singer in another page
-                    fetchFunction('artists.json', findMusic);
+                    console.log(pSingerName);
                 })
             })
         }
 
 
-        // the function to filter based on"song name" & "singer name"
+        // the function to filter based on song "name"
         function findMusic (songs) {
+            console.log(songs.length);
             for(let i = 0; i < songs.length; i++) {
-                if (songs[i].name === h4SongName && songs[i].singer === pSingerName) {
-                    songsInfo = songs[i];
+                if (songs[i].name === h4SongName) {
+                    songInfo = songs[i];
                 }
             }
-            if (songsInfo.name === h4SongName && songsInfo.singer === pSingerName)
-            {
-                console.log(songsInfo.name,"\n",songsInfo.singer,"\n",songsInfo.youtube,"\n",songsInfo.url);
-            }
-            else {
-                console.log("Song Not Found");
-            }
-            
+            console.log(songInfo[1]);
         }
 
     </script>
