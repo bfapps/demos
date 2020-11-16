@@ -28,7 +28,7 @@ function createArtists (artists) {
         musicDetail.setAttribute('class', 'music-detail-container');
 
         // inside dives
-        let img = "<img src='" + artists[i].src + "' alt='music image'>";
+        let img = "<img loading='lazy' src='" + artists[i].src + "' alt='music image'>";
         let text = "<h4>" + artists[i].name + "</h4>";
 
         // setting Values
@@ -61,5 +61,13 @@ function findArtist (artists) {
     }
     
     window.open("musicplayer-onlymobile.html");
-    // window.close();
+    window.close();
 }
+
+// function to renewate artists dives 
+document.getElementById('based-on-artists').addEventListener('click', function () {
+    fetchData(artistsFile, createArtists);
+})
+document.getElementById('based-on-songs').addEventListener('click', function () {
+    listContainer.innerHTML= "";
+})
