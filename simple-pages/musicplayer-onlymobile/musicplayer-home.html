@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
 
     <title>BFApps Music Player</title>
     <style>
@@ -54,12 +56,30 @@
         } 
         .list-container {
             background-color: #f6f6f6;
+            border: solid 2px #cccccc;
+            border-radius: 5px;
         }
         .home-icon-container {
+            display: flex;
+            align-items: center;
             
-            background-color: blue;
         }
-        .musicbox-container-1 {
+        .home-icon-container div {
+            font-size: 28px;
+            /* color: #606060; */
+            color: rebeccapurple;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 33%;
+            cursor: pointer;
+        }
+        .home-icon-container div span {
+            color: #606060;
+            font-size: 13px;
+        }
+        .musicbox-container {
             margin: 6px auto;
             width: 96%;
             height: 80px;
@@ -104,7 +124,7 @@
             <input type="text" name="search-box" id="search-box" class="search-box" placeholder="&#xF002; Search">
         </div>
         <div class="list-container">
-            <div class="musicbox-container-1">
+            <div class="musicbox-container">
                 <div class="music-img-container">
                     <img src="assets/img/musicplayer/unnown" alt="">
                 </div>
@@ -114,7 +134,11 @@
                 </div>
             </div>
         </div>
-        <div></div>
+        <div class="home-icon-container">
+            <div class="based-on-artists" style="color: rgb(47, 14, 124);"><i class="fa fa-user-circle" aria-hidden="true"></i><span>Artists</span></div>
+            <div class="based-on-songs" style="color: rgb(252, 48, 150)"><i class="fas fa-music"></i><span>Songs</span></div>
+            <div class="todays-selection" style="color: orangered;"><i class="fab fa-hotjar"></i><span>Hot List</span></div>
+        </div>
     </div>
 </body>
 </html>
