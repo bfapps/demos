@@ -144,6 +144,11 @@ backwardBtn.addEventListener('click', function () {
         fetchFunction(songFileAddress, forOrBackward);
     } 
 })
-function forOrBackward () {
-
+function forOrBackward (songs) {
+    for( let i = 0; i < songs.length; i++) {
+        if (songs[i].number === changeSongNumber) {
+            songInfo = songs[i];
+        }
+    }
+    pauseIfPlaying();
 }
