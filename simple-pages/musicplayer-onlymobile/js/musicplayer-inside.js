@@ -110,6 +110,7 @@ function pauseIfPlaying () {
     document.getElementById('play-btn').classList.add('blue-play-btn');
     // to play selected song
     songUrl = new Audio(songInfo.url);
+    changeAllValues();
     playOrPauseSong ();
 }
 
@@ -130,7 +131,6 @@ function playOrPauseSong () {
 
 // forward and backward
 forwardBtn.addEventListener('click', function () {
-    changeSonge = 1;
     if( songInfo < allSongsLength - 1);{
         changeSongNumber = songInfo.number + 1;
         fetchFunction(songFileAddress, forOrBackward);
@@ -138,7 +138,6 @@ forwardBtn.addEventListener('click', function () {
     
 })
 backwardBtn.addEventListener('click', function () {
-    changeSonge = -1;
     if (songInfo.number > 0) {
         changeSongNumber = songInfo.number -1;
         fetchFunction(songFileAddress, forOrBackward);
@@ -152,3 +151,13 @@ function forOrBackward (songs) {
     }
     pauseIfPlaying();
 }
+
+
+// this is function to change all values if song changed
+ function changeAllValues () {
+     document.querySelector("#main-music img").src = songInfo.src;
+     document.querySelector("#main-music h4").innerHTML = songInfo.name;
+     document.querySelector("#main-music p").innerHTML = songInfo.singer;
+     document.getElementById('download-link').href = songInfo.url;
+     document.getElementById('youtube-link').href = songInfo.youtube;
+ }
