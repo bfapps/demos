@@ -55,9 +55,11 @@ function artistsLitener () {
 function findArtist (artists) {
     for(let i = 0; i<artists.length; i++) {
         if (h4ArtistsName === artists[i].name) {
-            localStorage.setItem('songFileAddress', artists[i].url)
+            localStorage.setItem('songFileAddress', artists[i].url);
+            console.log(artists[i].url);
         }
     }
-    window.open("musicplayer-onlymobile.html");
-    window.close();
+    
+    // window.open("musicplayer-onlymobile.html");
+    // window.close();
 }
