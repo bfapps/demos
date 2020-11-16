@@ -1,9 +1,10 @@
 
 
 
-// if (!localStorage.getItem("songFileAddress")) {
-//     localStorage.setItem('songFileAddress', "artists/selena-gomez/songs.json");
-// }
+if (!localStorage.getItem("songFileAddress")) {
+    alert("Ops, It seem there is a problem with internet servers. We are unable to show your artist's song.")
+    // localStorage.setItem('songFileAddress', "artists/selena-gomez/songs.json");
+}
 const songFileAddress = localStorage.getItem('songFileAddress');
 let songInfo;
 let flexContainer = document.querySelector('.musicbox-container-4');

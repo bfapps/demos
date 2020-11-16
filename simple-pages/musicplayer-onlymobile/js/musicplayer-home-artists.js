@@ -60,6 +60,6 @@ function findArtist (artists) {
         }
     }
     
-    // window.open("musicplayer-onlymobile.html");
+    window.open("musicplayer-onlymobile.html");
     // window.close();
 }
