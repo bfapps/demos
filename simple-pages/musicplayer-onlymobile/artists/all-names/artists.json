@@ -1,0 +1,32 @@
+[
+    {
+        "name": "selena gomez",
+        "src": "assets/img/unknown-music/unknownmusic.webp",
+        "url": "artists/selena-gomez/songs.json",
+        "number": 0
+    },
+    {
+        "name": "Yas",
+        "src": "assets/img/unknown-music/unknownmusic.webp",
+        "url": "artists/yas/songs.json",
+        "number": 1
+    },
+    {
+        "name": "rihanna",
+        "src": "assets/img/unknown-music/unknownmusic.webp",
+        "url": "artists/rihanna/songs.json",
+        "number": 2
+    },
+    {
+        "name": "eminem",
+        "src": "assets/img/unknown-music/unknownmusic.webp",
+        "url": "artists/eminem/songs.json",
+        "number": 3
+    },
+    {
+        "name": "ho3ein",
+        "src": "assets/img/unknown-music/unknownmusic.webp",
+        "url": "artists/ho3ein/songs.json",
+        "number": 4
+    }
+]

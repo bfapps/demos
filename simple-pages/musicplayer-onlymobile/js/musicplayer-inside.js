@@ -1,4 +1,9 @@
-localStorage.setItem('songFileAddress', "artists/selena-gomez/songs.json");
+
+
+
+if (!localStorage.getItem("songFileAddress")) {
+    localStorage.setItem('songFileAddress', "artists/selena-gomez/songs.json");
+}
 const songFileAddress = localStorage.getItem('songFileAddress');
 let songInfo;
 let flexContainer = document.querySelector('.musicbox-container-4');
@@ -47,7 +52,7 @@ function createDiv(songs) {
         let divContainer = document.createElement('div');
         let imageContainer = document.createElement('div');
         let musicDiv = document.createElement('div');
-        let img = "<img loading='lazy' src=" + songs[i].src + " alt='music image'>";
+        let img = "<img loading='lazy' src='" + songs[i].src + "' alt='music image'>";
         let text = "<h4>" + songs[i].name.trim() + "</h4>\n<p>" + songs[i].singer + "</p>";
 
         // adding classes to created elements
