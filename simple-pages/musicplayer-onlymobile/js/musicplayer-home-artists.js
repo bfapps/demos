@@ -29,7 +29,7 @@ function createArtists (artists) {
 
         // inside dives
         let img = "<img loading='lazy' src='" + artists[i].src + "' alt='music image'>";
-        let text = "<h4>" + artists[i].name + "</h4>";
+        let text = "<h4><a href='musicplayer-onlymobile.html'>" + artists[i].name + "</a></h4>";
 
         // setting Values
         imgBox.innerHTML = img;
@@ -38,6 +38,7 @@ function createArtists (artists) {
         musicBox.appendChild(imgBox);
         musicBox.appendChild(musicDetail);
         listContainer.appendChild(musicBox);
+        
          
     }
 
@@ -60,8 +61,8 @@ function findArtist (artists) {
         }
     }
     
-    window.open("musicplayer-onlymobile.html");
-    window.close();
+    // window.open("musicplayer-onlymobile.html");
+    // window.close();
 }
 
 // function to renewate artists dives 
