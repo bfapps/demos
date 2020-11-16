@@ -328,23 +328,6 @@
         })
 
 
-        // magic happens here ::: first function is related to choosing song and the second function is related to playying or pausing music
-        // setting default values to work as global variables
-
-
-
-        // to change all values about played song
-        document.querySelectorAll('.music-detail-container').forEach(function (item) {
-            item.addEventListener("click", function (event) {
-                let index = event.target;
-                let songName = index.innerHTML;
-                document.getElementById('main-music-name').innerHTML = songName;
-                let downloadLink = localStorage.getItem("audio-url");
-                document.getElementById('download-link').href = downloadLink;
-                let youtubeLink = localStorage.getItem('youtube-link');
-                document.getElementById('youtube-link').href = youtubeLink;
-            })
-        })
 
 
     </script>
