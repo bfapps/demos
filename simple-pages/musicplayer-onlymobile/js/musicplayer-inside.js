@@ -195,6 +195,6 @@ function findSub () {
 }
 function changeSub (sub) {
     let subDoc = sub.responseXML;
-    let subText = subDoc.getElementsByTagName("text")[0].innerHTML;
+    let subText = subDoc.getElementsByTagName("text")[0].textContent;
     document.querySelector('.exact-subtitle-container').innerHTML = subText;
 }

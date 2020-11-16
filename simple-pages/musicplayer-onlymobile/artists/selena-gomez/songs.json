@@ -14,7 +14,7 @@
         "url": "https://cdn.begoosh.com/Music/Categories/Foreign/Amirica/01%20love%20you%20like%20a%20love%20song.mp3",
         "youtube": "https://www.youtube.com/watch?v=1IdG-t22VmY",
         "src": "assets/img/unknown-music/unknownmusic.webp",
-        "sub": "",
+        "sub": "assets/sub/selena-gomez/love-you-like-a-love-song.xml",
         "number": 1
     },
     {
@@ -23,7 +23,7 @@
         "url": "https://cdn.begoosh.com/Music/Categories/Foreign/Amirica/09%20Slow%20Down.mp3",
         "youtube": "https://www.youtube.com/watch?v=zGEf8dXN2sU",
         "src": "assets/img/unknown-music/unknownmusic.webp",
-        "sub": "",
+        "sub": "assets/sub/selena-gomez/slow-down.xml",
         "number": 2
     },
     {
