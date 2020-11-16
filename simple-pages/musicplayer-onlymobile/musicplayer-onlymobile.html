@@ -219,10 +219,10 @@
             color: red;
         }
         /* for play icon */
-        #play-icon {
+        #play-btn {
             transition: color 300ms;
         }
-        .blue-play-icon {
+        .blue-play-btn {
             color: purple;
         }
         a{
@@ -258,11 +258,11 @@
         
         <div class="musicbox-container-1" id="main-music">
             <div class="music-img-container">
-                <img src="../../assets/img/musicplayer/unnownmusic.png" alt="music image">
+                <img src="" alt="music image">
             </div>
             <div class="music-detail-container">
-                <h4 id="main-music-name">Wolves</h4>
-                <p>Selena Gomez</p>
+                <h4></h4>
+                <p></p>
             </div>
         </div>
         <div class="musicbox-container-2">
@@ -278,11 +278,11 @@
                     </div>
                 </div>
                 <div class="musicbox-surrending-circle">
-                    <div class="musicbox-middle-circle" id="play-icon"  onclick="playAudio (this.titel)"><i class="fas fa-play-circle    "></i></div>
-                    <div class="musicbox-forward option-btn"><i class="fas fa-forward    "></i></div>
-                    <div class="musicbox-backward option-btn"><i class="fas fa-backward    "></i></div>
+                    <div class="musicbox-middle-circle" id="play-btn"><i class="fas fa-play-circle"></i></div>
+                    <div class="musicbox-forward option-btn" id="backward-btn"><i class="fas fa-forward"></i></div>
+                    <div class="musicbox-backward option-btn" id="forward-btn"><i class="fas fa-backward"></i></div>
                     <div class="musicbox-up option-btn" id="caption-btn"><i class="fas fa-closed-captioning"></i></div>
-                    <div class="musicbox-down option-btn"><a id="youtube-link" target="_blank" href="https://www.youtube.com/watch?v=cH4E_t3m3xM"><i class="fab fa-youtube    "></i></a></div>
+                    <div class="musicbox-down option-btn"><a id="youtube-link" target="_blank"><i class="fab fa-youtube"></i></a></div>
                 </div>
             </div>
         </div>
@@ -290,62 +290,20 @@
             <div class="real-progress-bar"></div>
         </div>
         <div class="musicbox-container-3">
-            <div class="extra-icon-holder" id="like-icon"><i class="fas fa-heart    "></i></div>
+            <div class="extra-icon-holder" id="like-icon"><i class="fas fa-heart"></i></div>
             <div class="extra-icon-holder" style="color: rgb(151, 151, 2);"><i class="fa fa-search" aria-hidden="true"></i></div>
-            <div class="extra-icon-holder" id="download-icon"><a style="color: dodgerblue;" id="download-link" href="https://dl.baarzesh.net/music/2020/8/Previous/Wolves-SELENA-GOMEZ-ft-MARSHMELLO.mp3"><i class="fas fa-download    "></i></a></div>
+            <div class="extra-icon-holder" id="download-icon"><a style="color: dodgerblue;" id="download-link"><i class="fas fa-download"></i></a></div>
         </div>
 
         <!-- real music box -->
         <div class="musicbox-container-4">
-            <div class="musicbox-container-1">
-                <div class="music-img-container">
-                    <img src="../../assets/img/musicplayer/unnownmusic.png" alt="music image">
-                </div>
-                <div class="music-detail-container">
-                    <h4 title="wolves" onclick="changeSong (this.title)">wolves</h4>
-                    <p>Selena Gomez</p>
-                </div>
-            </div>
-            <div class="musicbox-container-1">
-                <div class="music-img-container">
-                    <img loading="lazy" src="../../assets/img/musicplayer/unnownmusic.png" alt="music image">
-                </div>
-                <div class="music-detail-container">
-                    <h4 title="same old love" onclick="changeSong (this.title)">same old love</h4>
-                    <p>Selena Gomez</p>
-                </div>
-            </div>
-            <div class="musicbox-container-1">
-                <div class="music-img-container">
-                    <img loading="lazy" src="../../assets/img/musicplayer/unnownmusic.png" alt="music image">
-                </div>
-                <div class="music-detail-container">
-                    <h4 title="slow down" onclick="changeSong (this.title)">slow down</h4>
-                    <p>Selena Gomez</p>
-                </div>
-            </div>
-            <div class="musicbox-container-1">
-                <div class="music-img-container">
-                    <img loading="lazy" src="../../assets/img/musicplayer/unnownmusic.png" alt="music image">
-                </div>
-                <div class="music-detail-container">
-                    <h4 title="the heart wants what it wants" onclick="changeSong (this.title)">the heart wants what it wants</h4>
-                    <p>Selena Gomez</p>
-                </div>
-            </div>
-            <div class="musicbox-container-1">
-                <div class="music-img-container">
-                    <img loading="lazy" src="../../assets/img/musicplayer/unnownmusic.png" alt="music image">
-                </div>
-                <div class="music-detail-container">
-                    <h4 title="love you like a love song" onclick="changeSong (this.title)">love you like a love song</h4>
-                    <p>Selena Gomez</p>
-                </div>
-            </div>
+            
         </div>
     </div>
 
     <textarea value="Hello World" id="mySubtitleInput" style="display:none" cols="30" rows="10"></textarea>
+
+    <script src="js/musicplayer-inside.js"></script>
     <script>
         // like function
         document.getElementById("like-icon").addEventListener('click', function () {
@@ -353,8 +311,8 @@
         })
 
         // play function
-        document.getElementById("play-icon").addEventListener('click', function () {
-                document.getElementById('play-icon').classList.toggle('blue-play-icon');
+        document.getElementById("play-btn").addEventListener('click', function () {
+                document.getElementById('play-btn').classList.toggle('blue-play-btn');
         })
 
         // to show subtitle
@@ -368,55 +326,12 @@
         document.querySelector(".copy-subtitle").addEventListener("click", function () {
             alert("copied")
         })
-        // function open youtube link 
-            function openYouTube() {
-                window.open("https://www.youtube.com/watch?v=1IdG-t22VmY");
-            }
+
 
         // magic happens here ::: first function is related to choosing song and the second function is related to playying or pausing music
         // setting default values to work as global variables
-        let audioUrl = new Audio("https://dl.baarzesh.net/music/2020/8/Previous/Wolves-SELENA-GOMEZ-ft-MARSHMELLO.mp3");
-            localStorage.setItem("song-play", "pause");
 
-        //  changeSong function
-        function changeSong (title) {
-            let myAudio;
-            let totalSongs = SelenaGomez.length;
-            validation = localStorage.getItem('song-play');
-            if (validation === "playing") {
-                localStorage.setItem('song-play', "pause");
-                audioUrl.pause();
-            }       
-            for (let i = 0; i < totalSongs; i++) {
-                if (SelenaGomez[i].song === title) {
-                    audioUrl = new Audio(SelenaGomez[i].url);
-                    localStorage.setItem("audio-url", SelenaGomez[i].url);
-                    localStorage.setItem('youtube-link', SelenaGomez[i].youtube);
-                }
-            }
-            // to change play-icon color
-            document.getElementById('play-icon').classList.remove('blue-play-icon');
-            document.getElementById('play-icon').classList.add('blue-play-icon');
-            // to play selected song
-            playAudio();
-        }
-        // play audio 
-        function playAudio () {    
-            let validation = localStorage.getItem("song-play");
-            let url = localStorage.getItem('audio-url');
-            
-            if (validation === "pause") {
-                localStorage.setItem("song-play", "playing");
-                audioUrl.play();
-                // document.getElementById("love_you_like_a_love_song").play();
-                
-            }
-            else if (validation === "playing") {
-                localStorage.setItem("song-play", "pause");
-                // document.getElementById("love_you_like_a_love_song").pause();
-                audioUrl.pause();
-            }
-        }
+
 
         // to change all values about played song
         document.querySelectorAll('.music-detail-container').forEach(function (item) {

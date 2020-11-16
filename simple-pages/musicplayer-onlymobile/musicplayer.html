@@ -87,6 +87,7 @@
 
         // we create the div containers with specific class and put the details in it
         function createDiv(songs) {
+            flexContainer.innerHTML= "";
             for (let i = 0; i < songs.length; i++) {
                 let divContainer = document.createElement('div');
                 let imageContainer = document.createElement('div');
