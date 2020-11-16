@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <title>BFApps Music Player</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        :root {
+            --img-size: 40px;
+            --h5-margin: 8px;
+        }
+        /* this is just kidding */
+        body {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #dddddd;
+            overflow-x: hidden;
+        }
+        .musicbox-home {
+            position: relative;
+
+            height: 100vh;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 16px;
+            background-color: #eeeeee;
+            display: grid;
+
+            width: min-content;
+            grid-template-columns: 500px;
+            grid-template-rows: 80px auto 70px;
+
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        .search-box {
+            border: 2px solid #cccccc;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            padding: 16px;
+            height: 40px;
+            width: 100%;
+            font-family: FontAwesome;
+        } 
+        .list-container {
+            background-color: #f6f6f6;
+        }
+        .home-icon-container {
+            
+            background-color: blue;
+        }
+        .musicbox-container-1 {
+            margin: 6px auto;
+            width: 96%;
+            height: 80px;
+            background-color: #eeeeee;
+            display: grid;
+            grid-template-columns: 60px auto;
+        }
+        .music-img-container {
+            /* width: 100px; */
+            display: grid;
+            place-content: center;
+        }
+        .music-img-container img {
+            width: var(--img-size);
+            height: var(--img-size);
+            border-radius: 50%;
+        }
+        .music-detail-container {
+            /* width: calc(375px - 150px); */
+            padding-right: 10px;
+            z-index: 25;
+        }
+        .music-detail-container h4 {
+            margin-bottom: 4px;
+            cursor: pointer;
+        }
+        .music-detail-container p {
+            font-size: 14px;
+        }
+        @media (max-width: 500px) {
+            .musicbox-home {
+                margin: 0;
+                width: 100%;
+                grid-template-columns: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="musicbox-home">
+        <div class="search-container">
+            <input type="text" name="search-box" id="search-box" class="search-box" placeholder="&#xF002; Search">
+        </div>
+        <div class="list-container">
+            <div class="musicbox-container-1">
+                <div class="music-img-container">
+                    <img src="assets/img/musicplayer/unnown" alt="">
+                </div>
+                <div class="music-detail-container">
+                    <h4></h4>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div></div>
+    </div>
+</body>
+</html>
