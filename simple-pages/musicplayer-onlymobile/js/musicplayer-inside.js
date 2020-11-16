@@ -35,6 +35,7 @@ function setFirstValues(songs) {
     document.getElementById('youtube-link').href = firstValues.youtube;
     songUrl = new Audio (firstValues.url)
     songInfo = firstValues;
+    findSub ();
 }
 
 function fetchFunction(url, cFunction) {
@@ -166,4 +167,28 @@ function forOrBackward (songs) {
      document.querySelector("#main-music p").innerHTML = songInfo.singer;
      document.getElementById('download-link').href = songInfo.url;
      document.getElementById('youtube-link').href = songInfo.youtube;
+
+     findSub ();
+
  }
+
+//  to change subtitle
+
+function findSub () {
+    if (songInfo.sub.length > 5) {
+        fetch(songInfo.sub).then(function (response) {
+            return response.json()
+        }).then(function (json) {
+            let sub = json;
+            changeSub(sub);
+        })
+    }
+
+    else if (songInfo.sub.length < 5) {
+        document.querySelector('.exact-subtitle-container').innerHTML = "Subtitle Not Found";
+    }
+}
+function changeSub (sub) {
+    let subText = sub[0].text;
+    document.querySelector('.exact-subtitle-container').innerHTML = subText;
+}
