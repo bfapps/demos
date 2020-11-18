@@ -1,4 +1,4 @@
-!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -7,121 +7,88 @@
     <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js"
         integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/card.css">
+    <link rel="stylesheet" href="/nav.css">
     <title>amir</title>
     <style media="screen">
       * {
         box-sizing: border-box;
       }
       body {
+        position: relative;
         margin: 0;
-        overflow: hidden;
+        overflow-x: hidden;
         min-height: 100vh;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
-      .main-container {
-        margin: 80px auto;
-        width: 375px;
-
-      }
-      .card-container {
-        width: 100%;
-        min-height: 300px;
-        padding: 20px 40px;
-        background-color: #071a52;
-        border-radius: 10px;
-        box-shadow:
-        4px 4px 4px 0 rgba(0, 0, 0, 0.3);
-        transition: all 500ms;
-      }
-      .card-container:hover {
-        transform: translateY(-1%) scale(1.02);
-      }
-      .img-container {
-        position: relative;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background-color: #f0f0f0;
-        cursor: pointer;
-      }
-      .card-container h2 {
-        text-transform: capitalize;
-        font-size: 22px;
-      }
-      .card-container h2 span {
-        color: #ff304f;
-      }
-      .card-container, h2 p {
-        color: #f0f0f0;
-      }
-      .card-container button {
-        display: inline-block;
-        background-color: white;
-        border: none;
-        border-radius: 4px;
-        /* width: 130px; */
-        margin: 20px auto;
-        padding: 8px 16px;
-        font-weight: 600;
-        cursor: pointer;
-      }
-      .card-container button:hover {
-        background-color: #ff304f;
-        color: white;
-      }
-      .img-container::before, .img-container::after {
-        position: absolute;
-        content: "\f004";
-        color: #ff304f;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        transition: all 500ms;
-        display: flex;
+      section {
+        display: grid;
+        grid-template-columns: minmax(500px, 800px);
         justify-content: center;
-        align-items: center;
-        padding: 0;
-        font-size: 26px;
-        font-family: FontAwesome;
+        padding: 0 40px;
       }
+      article {
+        /* width: 800px; */
+        margin: 80px auto;
+        padding: 40px 20px;
+        background-color: rgba(240,240,240, 0.2);
+      }
+      article img {
+        width: 100%;
+        height: 100px;
 
-      .img-container:hover::before {
-        color: white;
-        z-index: 10;
-        background-color: #ff304f;
-        content: "\f21e";
+
       }
-      .img-container:hover::after {
-        animation: cardImgAnime 900ms infinite ease-in-out;
-        background-color: #ff304f;
-      }
-      @keyframes cardImgAnime {
-        0% {
-          transform: scale(0.9);
-          opacity: 1;
-        }
-        100% {
-          transform: scale(1.6);
-          opacity: 0;
-        }
+      p {
+        line-height: 30px;
       }
     </style>
     <body>
-      <div class="main-container">
-        <div class="card-container">
-          <div class="img-container">
-
-          </div>
-          <div class="text-container">
-            <h2>Let's Save a <span>Life</span> right now </h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-            </p>
-            <button type="button" name="button">Donate</button>
-          </div>
+      <nav>
+        <div class="menu-items">
+          <ul>
+            <li><i class="fa fa-home"></i><span>Home</span></li>
+            <li><i class="fa fa-user"></i><span>Accounts</span></li>
+            <li><i class="fa fa-question"></i><span>FAQ</span></li>
+          </ul>
         </div>
+        <div class="sign-in-out">
 
-      </div>
+        </div>
+      </nav>
+      <main>
+        <aside class="">
+          <div class="main-container">
+            <div class="card-container">
+              <div class="img-container">
+
+              </div>
+              <div class="text-container">
+                <h2>Let's Save a <span>Life</span> right now </h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                </p>
+                <button type="button" name="button">Donate</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+        <section>
+          <article class="">
+            <img src="../assets/img/horoscope-page/night-sky.jpg" alt="">
+            <h1>Article</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </article>
+          <article class="">
+            <h1>Article</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </article>
+        </section>
+      </main>
+
+
     </body>
     </html>
