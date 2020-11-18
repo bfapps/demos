@@ -47,6 +47,9 @@ aside {
 .card-container, h2 p {
   color: #f0f0f0;
 }
+.card-container p {
+  line-height: 30px;
+}
 .card-container button {
   display: inline-block;
   background-color: white;
