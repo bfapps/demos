@@ -1,7 +1,7 @@
 main {
   width: 100%;
   display: grid;
-  grid-template-columns: 450px auto;
+  grid-template-columns: minmax(350px, 400px) auto;
 }
 
 aside {
@@ -9,10 +9,11 @@ aside {
 }
 
 .main-container {
-  margin: 80px auto;
-  width: 350px;
   position: sticky;
-  top: 80px;
+  width: 90%;
+  margin: 0 auto;
+  top: 180px;
+  left: auto;
 }
 .card-container {
   width: 100%;

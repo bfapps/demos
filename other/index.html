@@ -21,6 +21,7 @@
         overflow-x: hidden;
         min-height: 100vh;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f6f6f6;
       }
       section {
         display: grid;
@@ -36,9 +37,9 @@
       }
       article img {
         width: 100%;
-        height: 100px;
-
-
+      }
+      article h1 {
+        font-size: 27px
       }
       p {
         line-height: 30px;
@@ -50,11 +51,20 @@
           <ul>
             <li><i class="fa fa-home"></i><span>Home</span></li>
             <li><i class="fa fa-user"></i><span>Accounts</span></li>
+            <li><i class="fa fa-bookmark"></i><span>bookmarks</span>
+              <ul>
+                <li>micro</li>
+                <li>micro</li>
+              </ul>
+            </li>
             <li><i class="fa fa-question"></i><span>FAQ</span></li>
           </ul>
         </div>
         <div class="sign-in-out">
-
+          <ul>
+            <li>sign in</li>
+            <li>sign out</li>
+          </ul>
         </div>
       </nav>
       <main>
@@ -77,6 +87,7 @@
           <article class="">
             <img src=".././assets/img/horoscope-page/night-sky.jpg" alt="">
             <h1>Article</h1>
+            <h3>Monday 16, August, 2020</h3>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
