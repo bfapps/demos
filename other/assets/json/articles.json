@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Article",
+    "date": "Monday 16, August, 2020",
+    "src": true,
+    "xml": true,
+    "number": 0
+  },
+  {
+    "name": "Article",
+    "date": "Monday 16, August, 2020",
+    "src": false,
+    "xml": false,
+    "number": 1
+  }
+]

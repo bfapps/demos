@@ -25,20 +25,27 @@
       }
       section {
         display: grid;
-        grid-template-columns: minmax(500px, 800px);
+        grid-template-columns: minmax(800px, 800px);
+        grid-auto-rows: auto;
         justify-content: center;
         padding: 0 40px;
       }
       article {
-        /* width: 800px; */
-        margin: 80px auto;
+        margin-bottom: 80px;
         padding: 40px 20px;
-        background-color: rgba(240,240,240, 0.2);
+        display: flex;
+        flex-direction: column;
+        /* background-color: rgba(240,240,240, 0.2);
+        box-shadow: 0 0 3px 0 rgba(0,0,0,0.2); */
+        background: linear-gradient(225deg, #eeeeee, #ffffff);
+box-shadow:  -20px -20px 60px #e6e6e6,
+             20px 20px 60px #ffffff;
       }
       article img {
         width: 100%;
       }
       article h1 {
+
         font-size: 27px
       }
       p {
@@ -83,7 +90,7 @@
             </div>
           </div>
         </aside>
-        <section>
+        <section class="articles-section">
           <article class="">
             <img src=".././assets/img/horoscope-page/night-sky.jpg" alt="">
             <h1>Article</h1>
@@ -92,15 +99,76 @@
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
           </article>
-          <article class="">
-            <h1>Article</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </article>
         </section>
       </main>
 
+      <script type="text/javascript">
+        let articleSection = document.querySelector('.articles-section');
+        let articleText="";
 
+        // fetch function
+        function getJsonData(url, cFunction) {
+          fetch(url).then(function (response) {
+            return response.json()
+          }).then(function (json) {
+            let jsonData = json;
+            cFunction (jsonData);
+          })
+        }
+        // xml function
+        function getXmlData (url, cFunction) {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    cFunction (this);
+                    data = cFunction (this);
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+
+        window.onload = function () {
+          getJsonData ("assets/json/articles.json", createArticles);
+        }
+
+        function createArticles (jsonData) {
+          articleSection.innerHTML="";
+          for (let i = 0; i < jsonData.length; i++) {
+            let article = document.createElement('article');
+            article.setAttribute('loading', 'lazy');
+            article.setAttribute('id', "number" + jsonData[i].number);
+              if (jsonData[i].src === true) {
+                let img = document.createElement('img');
+                let src = "assets/img/number" + jsonData[i].number + ".jpg";
+                console.log(src);
+                img.setAttribute('src', src);
+                article.appendChild(img);
+              }
+            let h1 = document.createElement('h1');
+            h1.textContent = jsonData[i].name;
+            let h3 = document.createElement('h3');
+            h3.textContent=jsonData[i].date;
+
+            article.appendChild(h1);
+            article.appendChild(h3);
+            if (jsonData[i].xml === true) {
+              let xmlUrl = "assets/xml/number" + jsonData[i].number + ".xml";
+              getXmlData (xmlUrl, getText);
+              let p = document.createElement('p');
+              p.textContent = localStorage.getItem('articleText');;
+              article.appendChild(p);
+            }
+            articleSection.appendChild(article);
+          }
+        }
+
+        function getText (xml) {
+          let xmlDoc = xml.responseXML;
+          articleText = xmlDoc.getElementsByTagName('text')[0].textContent;
+          localStorage.setItem('articleText', articleText);
+        }
+
+      </script>
     </body>
     </html>

@@ -3,6 +3,7 @@ nav {
   top: 0;
   width: 100%;
   background-color: #0e153a;
+  box-shadow: 0 4px 4px 0 rgba(14, 21, 58,0.3);
   display: flex;
   justify-content: space-between;
   z-index: 10;
