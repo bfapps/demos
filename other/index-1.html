@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
     <title>Document</title>
     <link rel="stylesheet" href="./card.css">
     <link rel="stylesheet" href="./nav.css">
@@ -63,6 +65,7 @@
        @media (max-width: 1100px) {
            main {
                flex-direction: column;
+               margin: 20px 0;
            }
            section {
                order: 1;
@@ -71,6 +74,7 @@
            aside {
                order: 2;
                width: 100%;
+               padding-top: 0;
            }
            .card-container {
                margin: 20px auto;
@@ -90,24 +94,8 @@
 </head>
 <body>
     <nav>
-        <div class="menu-items">
-            <ul>
-                <li><i class="fa fa-home"></i><span>Home</span></li>
-                <li><i class="fa fa-user"></i><span>Accounts</span></li>
-                <li><i class="fa fa-bookmark"></i><span>bookmarks</span>
-                    <ul>
-                        <li>micro</li>
-                        <li>micro</li>
-                    </ul>
-                </li>
-                <li><i class="fa fa-question"></i><span>FAQ</span></li>
-            </ul>
-        </div>
-        <div class="sign-in-out">
-            <ul>
-                <li>sign in</li>
-                <li>sign out</li>
-            </ul>
+        <div>
+            <div><i class="fa fa-bars" aria-hidden="true"></i></div>
         </div>
     </nav>
 
