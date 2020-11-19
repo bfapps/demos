@@ -2,16 +2,14 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scales=1.0">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js"
-        integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a"
-        crossorigin="anonymous">
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="./card.css">
     <link rel="stylesheet" href="./nav.css">
     <title>amir</title>
-    <style media="screen">
+    <style>
       * {
         box-sizing: border-box;
       }
@@ -26,6 +24,7 @@
       main {
         margin-top: 180px;
         width: 100%;
+        overflow-x: hidden;
         display: grid;
         grid-template-columns: minmax(350px, 400px) auto;
       }
@@ -64,11 +63,14 @@
       }
 
       @media (max-width: 1100px) {
+        body {
+          background-color: red;
+        }
         .card-container h2 {
           font-size: 17px;
         }
         main {
-          grid-template-columns: minmax(240px, auto);
+          grid-template-columns: auto;
           margin-top: 40px;
         }
         article {
@@ -76,7 +78,7 @@
         }
         section {
           grid-row: 1;
-          grid-template-columns: minmax(240px, auto);
+          grid-template-columns: auto;
           padding: 0 20px;
         }
         aside {
@@ -84,6 +86,7 @@
         }
       }
     </style>
+  </head>
     <body>
       <nav>
         <div class="menu-items">

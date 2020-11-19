@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./card.css">
+    <link rel="stylesheet" href="./nav.css">
+    <style>
+       * {
+           box-sizing: border-box;
+       }
+       body {
+           margin: 0;
+           padding: 0;
+           overflow-x: hidden;
+           min-height: 100vh;
+           background-color: #e9e9e9;
+       }
+       main {
+           width: 100vw;
+           margin: 80px 0;
+           overflow-x: hidden;
+           display: flex;
+       }
+       aside {
+           position: relative;
+           padding: 40px 20px;
+           width: 350px;
+           min-width: 350px;
+       }
+       section {
+           padding: 40px; 
+           flex: 1;
+           
+       }
+       article {
+           margin: 0 auto 60px auto;
+           padding: 40px 20px;
+           min-width: 300px;
+           max-width: 800px;
+           background: linear-gradient(225deg, #eeeeee, #ffffff);
+           box-shadow:  
+            -20px -20px 60px #e6e6e6,
+            20px 20px 60px #eeeeee;
+       }
+       article img {
+           width: 100%;
+       }
+       article h1 {
+        font-size: 27px;
+        color: #333333;
+        margin-bottom: 10px;
+      }
+      article h3 {
+        color: #505050;
+      }
+      article p {
+        line-height: 30px;
+        color: #333333;
+      }
+
+       @media (max-width: 1100px) {
+           main {
+               flex-direction: column;
+           }
+           section {
+               order: 1;
+               padding: 40px 20px;
+           }
+           aside {
+               order: 2;
+               width: 100%;
+           }
+           .card-container {
+               margin: 20px auto;
+               min-width: 200px;
+               max-width: 800px;
+           }
+       }
+       @media (max-width: 500px) {
+           section, aside {
+               padding: 40px 12px;
+           }
+           article {
+               padding: 16px;
+           }
+       }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="menu-items">
+            <ul>
+                <li><i class="fa fa-home"></i><span>Home</span></li>
+                <li><i class="fa fa-user"></i><span>Accounts</span></li>
+                <li><i class="fa fa-bookmark"></i><span>bookmarks</span>
+                    <ul>
+                        <li>micro</li>
+                        <li>micro</li>
+                    </ul>
+                </li>
+                <li><i class="fa fa-question"></i><span>FAQ</span></li>
+            </ul>
+        </div>
+        <div class="sign-in-out">
+            <ul>
+                <li>sign in</li>
+                <li>sign out</li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <aside>
+            <div class="card-container">
+                <div class="img-container">
+            
+                </div>
+                <div class="text-container">
+                    <h2>Let's Save a <span>Life</span> right now </h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam
+                    </p>
+                    <button type="button" name="button">Donate</button>
+                </div>
+            </div>
+        </aside>
+        
+        <section class="">
+            <div class="articles-section">
+            
+            </div>
+            <div class="comment-section">
+                
+            </div>
+        </section>
+    </main>
+
+    <script type="text/javascript" src="fuck.js"></script>
+</body>
+</html>

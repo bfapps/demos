@@ -1,21 +1,9 @@
 
 
-aside {
-  position: relative;
-  padding: 0 20px;
-}
-
-.main-container {
-  position: sticky;
-  width: 100%;
-  margin: 0 auto;
-  top: 180px;
-  left: auto;
-}
 .card-container {
   width: 100%;
   min-height: 300px;
-  padding: 20px 40px;
+  padding: 20px 20px;
   background-color: #071a52;
   border-radius: 10px;
   box-shadow:
