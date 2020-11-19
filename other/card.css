@@ -1,17 +1,13 @@
-main {
-  margin-top: 180px;
-  width: 100%;
-  display: grid;
-  grid-template-columns: minmax(350px, 400px) auto;
-}
+
 
 aside {
   position: relative;
+  padding: 0 20px;
 }
 
 .main-container {
   position: sticky;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   top: 180px;
   left: auto;

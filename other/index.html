@@ -23,6 +23,12 @@
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         background-color: #f6f6f6;
       }
+      main {
+        margin-top: 180px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: minmax(350px, 400px) auto;
+      }
       section {
         display: grid;
         grid-template-columns: minmax(600px, 800px);
@@ -65,12 +71,13 @@
           grid-template-columns: minmax(240px, auto);
           margin-top: 40px;
         }
-        article img {
-
-
+        article {
+          margin-bottom: 20px;
         }
         section {
-          grid-row: 1
+          grid-row: 1;
+          grid-template-columns: minmax(240px, auto);
+          padding: 0 20px;
         }
         aside {
           grid-row: 2;
@@ -118,6 +125,7 @@
         <section class="articles-section">
           <article class="">
             <img src=".././assets/img/horoscope-page/night-sky.jpg" alt="">
+            
             <h1>Article</h1>
             <h3>Monday 16, August, 2020</h3>
             <p>
@@ -159,7 +167,7 @@
 
         function createArticles (jsonData) {
           articleSection.innerHTML="";
-          for (let i = 0; i < jsonData.length; i++) {
+          for (let i = 0; i <jsonData.length; i++) {
             let article = document.createElement('article');
             article.setAttribute('loading', 'lazy');
             article.setAttribute('id', "number" + jsonData[i].number);
