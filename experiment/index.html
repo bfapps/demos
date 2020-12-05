@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="article.css">
     <title>Experiment</title>
     <style>
         * {
@@ -18,91 +19,127 @@
             overflow-x: hidden;
             display: grid;
             width: 100vw;
-            grid-template-columns: 300px auto;
+            grid-template-columns: 400px auto;
         }
-
-        article {
+        h3, label, h2, h4 {
+            text-transform: capitalize;
+        }
+        .contact-me {
             width: 85%;
             margin: 5em auto;
-            padding: 1.5em;
-            background-color: #fcfcfc; 
-        }
-        article img {
-            width: 100%;
-        }
-        article h2 {
-            font-size: 1.7em;
-            color: #333333;
-            font-weight: 600;
-        }
-        article h4 {
-            font-size: 1.1em;
+            padding: 1.3em;
+            background-color: #fcfcfc;
             color: #606060;
+            border-radius: 3px;
+        }
+        .contact-me h3 {
             font-weight: 600;
+            text-align: center;
+            margin: 0.5em;
+            font-size: 1.4em;
         }
-        article p {
-            font-size: 1.3em;
-            line-height: 35px;
-            margin-top: 1.5em;
+        .contact-me label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-size: 1.1em;
         }
-        article a {
+        .contact-me input {
+            display: block;
+            width: 100%;
+            padding: 0.4em;
+            font-size: 1em;
+            color: #505050;
+            border-radius: 4px;
+            border: #fcfcfc solid 3px;
+            background-color: #f3f3f3;
+            margin-bottom: 1.4em;
+        }
+        .contact-me #submit-btn {
             display: inline-block;
-            text-decoration: none;
-            margin: 1em 0 0 0;
-            padding: 0.5em 1em;
-            background-color: dodgerblue;
+            padding: 0.4em 0em;
+            margin-top: 1em;
+            width: 130px;
             color: white;
-        }
-        article a:hover {
-            background-color: darkblue;
+            background-color: dodgerblue;
+            cursor: pointer;
         }
         @media (max-width: 1100px) {
             main {
                 grid-template-columns: 100vw;
             }
-            article {
-                width: 95%;
-            }
-            article:nth-of-type(1) {
-                margin-top: 2em;
-            }
-            article h4 {
-                font-size: .9em;
-            }
-            article p {
-                font-size: 1.1em;
-            }
             aside {
-                grid-row: 2;
+                /* display: grid;
+                grid-template-columns: repeat(3, 1fr); */
+                padding: 1.5em;
+            }
+            .contact-me {
+                display: inline-block;
+                margin: 0 .7em;
+                width: 32%;
+            }
+            .contact-me h3 {
+                font-size: 1em;
+            }
+            .contact-me label {
+                font-size: .8em;
+            }
+            .contact-me input {
+                font-size: .7em;
+                margin-bottom: 1.8em;
+                padding: 0.45em;
             }
         }
-        @media (max-width: 500px) {
-            article {
-                max-width: 95%;
-                margin: 3em auto;
+        @media (max-width: 920px) {
+            /* aside {
+                grid-template-columns: 50% 50%;
+            } */
+        }
+        @media (max-width: 700px) {
+            aside {
+                /* grid-template-columns: 100%; */
+                padding: 1.5em 0;
             }
-            article:nth-of-type(1) {
-                margin-top: 1em;
-            }
-            article h2 {
-                font-size: 1.3em;
-            }
-            article h4 {
-                font-size: 0.7em;
-            }
-            article p {
-                font-size: .9em;
-            }
-            article a {
-                font-size: 0.8em;
+            .contact-me {
+                width: 95%;
             }
         }
     </style>
 </head>
 <body>
     <main>
-        <aside></aside>
-        <div class="article-sec">
+        <aside>
+            <div class="contact-me">
+                <form action="">
+                    <h3>Contact Me</h3>
+                    <label for="name-input">Name</label>
+                    <input type="text" id="name-input" name="name-input">
+                    <label for="email-input">E-Mail</label>
+                    <input type="text" id="email-input" name="email-input">
+                    <input type="submit" id="submit-btn" value="submit">
+                </form>
+            </div>
+            <div class="contact-me">
+                <form action="">
+                    <h3>Contact Me</h3>
+                    <label for="name-input">Name</label>
+                    <input type="text" id="name-input" name="name-input">
+                    <label for="email-input">E-Mail</label>
+                    <input type="text" id="email-input" name="email-input">
+                    <input type="submit" id="submit-btn" value="submit">
+                </form>
+            </div>
+            <div class="contact-me">
+                <form action="">
+                    <h3>Contact Me</h3>
+                    <label for="name-input">Name</label>
+                    <input type="text" id="name-input" name="name-input">
+                    <label for="email-input">E-Mail</label>
+                    <input type="text" id="email-input" name="email-input">
+                    <input type="submit" id="submit-btn" value="submit">
+                </form>
+            </div>
+        </aside>
+        <section class="article-sec">
             <article>
                 <img src="../assets/img/horoscope-page/night-sky.jpg" alt="article image">
                 <h2>I made a mistake</h2>
@@ -118,7 +155,7 @@
                     voluptate repellendus.</p>
                     <a href="#">Read More</a>
             </article>
-        </div>
+        </section>
     </main>
 </body>
 </html>
