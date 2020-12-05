@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        main {
+            overflow-x: hidden;
+            display: grid;
+            width: 100vw;
+            grid-template-columns: 300px auto;
+        }
+
+        article {
+            width: 85%;
+            margin: 5em auto;
+            padding: 1.5em;
+            background-color: #fcfcfc; 
+        }
+        article img {
+            width: 100%;
+        }
+        article h2 {
+            font-size: 1.7em;
+            color: #333333;
+            font-weight: 600;
+        }
+        article h4 {
+            font-size: 1.1em;
+            color: #606060;
+            font-weight: 500;
+        }
+        article p {
+            font-size: 1.3em;
+            line-height: 35px;
+            margin-top: 1.5em;
+        }
+        article a {
+            display: inline-block;
+            text-decoration: none;
+            margin: 1em 0 0 0;
+            padding: 0.5em 1em;
+            background-color: dodgerblue;
+            color: white;
+        }
+        @media (max-width: 1100px) {
+            main {
+                grid-template-columns: 100vw;
+            }
+            article {
+                width: 95%;
+            }
+            article:nth-of-type(1) {
+                margin-top: 2em;
+            }
+            article h4 {
+                font-size: .9em;
+            }
+            article p {
+                font-size: 1.1em;
+            }
+            aside {
+                grid-row: 2;
+            }
+        }
+        @media (max-width: 500px) {
+            article {
+                max-width: 95%;
+                margin: 3em auto;
+            }
+            article:nth-of-type(1) {
+                margin-top: 1em;
+            }
+            article h2 {
+                font-size: 1.3em;
+            }
+            article h4 {
+                font-size: 0.7em;
+            }
+            article p {
+                font-size: .9em;
+            }
+            article a {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <aside></aside>
+        <div class="article-sec">
+            <article>
+                <img src="../assets/img/horoscope-page/night-sky.jpg" alt="article image">
+                <h2>I made a mistake</h2>
+                <h4>20/12/2020</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error fugiat quis asperiores odio non iste cum quidem consectetur voluptatem architecto. Totam sequi inventore, excepturi quaerat repudiandae esse accusantium voluptate repellendus.</p>
+                <a href="#">Read More</a>
+            </article>
+            <article>
+                <h2>I made a mistake</h2>
+                <h4>20/12/2020</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error fugiat quis asperiores odio non iste cum quidem
+                    consectetur voluptatem architecto. Totam sequi inventore, excepturi quaerat repudiandae esse accusantium
+                    voluptate repellendus.</p>
+                    <a href="#">Read More</a>
+            </article>
+        </div>
+    </main>
+</body>
+</html>

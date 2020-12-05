@@ -1,3 +1,43 @@
 nav {
-  background-color: #eeeeee;
+  background-color: #1c033d;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  border-radius: 4px;
+  margin: 3px;
+}
+#nav-list-container-2 {
+  width: 300px;
+  display: flex;
+}
+#nav-list-container-2 > div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+  color: white;
+  position: relative;
+}
+#nav-list-container-2 div:hover {
+  background-color: white;
+  color: #1c033d;
+  cursor: pointer;
+}
+#nav-list-container-2 > div > div {
+  
+  background-color: red;
+  color: red;
+}
+#nav-list-container-2 > div:hover > div {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  display: block;
+  background-color: blue;
 }

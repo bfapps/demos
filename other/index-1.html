@@ -13,6 +13,7 @@
            box-sizing: border-box;
        }
        body {
+           position: relative;
            margin: 0;
            padding: 0;
            overflow-x: hidden;
@@ -94,8 +95,20 @@
 </head>
 <body>
     <nav>
-        <div>
+        <div class="nav-list-container" id="nav-list-container-1" style="display: none;">
             <div><i class="fa fa-bars" aria-hidden="true"></i></div>
+        </div>
+        <div class="nav-list-container" id="nav-list-container-2">
+            <div>Home</div>
+            <div id="bookmarks-container">Bookmarks
+                <div id="khar" style="display: none;">
+                    <div>item 1</div>
+                    <div>item 1</div>
+                    <div>item 1</div>
+                    <div>item 1</div>
+                </div>
+            </div>
+            <div>FAQ</div>
         </div>
     </nav>
 
