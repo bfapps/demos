@@ -54,13 +54,11 @@ function loadTxt (data) {
     let txt = data[0].txt;
     localStorage.setItem('txt', txt); 
 }
+// not workin . why?
 function addListener () {
-    document.querySelectorAll('#article-sec article').forEach(function (item) {
-        item.addEventListener("click", function (event) {
-            alert("bad");
-
-            // let src = event.target.parentNode.children[0].src;
-            // console.log(src);
+    document.querySelectorAll("article").forEach(function (item) {
+        item.addEventListener('click', function (event) {
+            alert('bad');
         })
     })
 }
