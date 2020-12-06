@@ -1,10 +1,9 @@
 const articleSec = document.getElementById('article-sec');
-let shortText = "";
 
-function fetchData (url, cFunction) {
+function fetchData(url, cFunction) {
     fetch(url).then(function (response) {
         return response.json();
-    }).then(function(json) {
+    }).then(function (json) {
         let data = json;
         cFunction(data);
     });
@@ -14,9 +13,9 @@ window.addEventListener("load", function () {
     fetchData("article.json", loadData);
 });
 
-function loadData (data) {
+function loadData(data) {
     articleSec.innerHTML = "";
-    for (let i = data.length -1; i >= 0; i--) {
+    let i = localStorage.getItem('articleNumber');
         let article = document.createElement('article');
         let img = document.createElement('img');
         let h2 = document.createElement('h2');
@@ -33,13 +32,12 @@ function loadData (data) {
         else if (data[i].date.length < 8) {
             h4.innerHTML = "Once Upon A Time ...";
         }
-        
-        a.setAttribute('href', 'open-article.html');
-        a.setAttribute('id', "a" + i);
-        a.innerHTML = "Read More";
+
+        a.setAttribute('href', 'index.html');
+        a.innerHTML = "Back";
         let adress = "article-" + i + ".json";
-        fetchData (adress, loadTxt);
-        p.innerHTML = localStorage.getItem('txt').slice(0, 150) + "...";
+        fetchData(adress, loadTxt);
+        p.innerHTML = localStorage.getItem('fulltxt');
         if (data[i].src.length > 4) {
             article.appendChild(img);
         }
@@ -49,24 +47,11 @@ function loadData (data) {
         article.appendChild(a);
         articleSec.appendChild(article);
     }
-    addListener();
-}
 
-function loadTxt (data) {
+function loadTxt(data) {
     let txt = data[0].txt;
-    localStorage.setItem('txt', txt);
-    shortText = txt; 
+    localStorage.setItem('fulltxt', txt);
 }
 
-
-function addListener () {
-    document.querySelectorAll(".article-sec article a").forEach(function (item) {
-        item.addEventListener('click', function (event) {
-            let number = Number(event.target.id.replace(/a/g, ""));
-            localStorage.setItem('articleNumber', number);
-            
-        })
-    })
-}
 
 

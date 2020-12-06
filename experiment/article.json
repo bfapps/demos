@@ -2,13 +2,16 @@
     {
         "src": "../assets/img/horoscope-page/night-sky.jpg",
         "title": "I made a mistake",
-        "date": "18/12/2020",
-        "number": 0
+        "date": "18/12/2020"
     },
     {
         "src": "",
         "title": "Trust means nothing",
-        "date": "20/12/2020",
-        "number": 1
+        "date": "20/12/2020"
+    },
+    {
+        "src": "",
+        "title": "Life is still going on",
+        "date": "22/12/2020"
     }
 ]
