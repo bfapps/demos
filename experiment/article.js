@@ -1,5 +1,6 @@
 const articleSec = document.getElementById('article-sec');
 let shortText = "";
+let fileData;
 
 function fetchData (url, cFunction) {
     fetch(url).then(function (response) {
@@ -16,7 +17,8 @@ window.addEventListener("load", function () {
 
 function loadData (data) {
     articleSec.innerHTML = "";
-    for (let i = data.length -1; i >= 0; i--) {
+    fileData = data;
+    for (let i = 0; i < data.length; i++) {
         let article = document.createElement('article');
         let img = document.createElement('img');
         let h2 = document.createElement('h2');
@@ -38,8 +40,7 @@ function loadData (data) {
         a.setAttribute('id', "a" + i);
         a.innerHTML = "Read More";
         let adress = "article-" + i + ".json";
-        fetchData (adress, loadTxt);
-        p.innerHTML = localStorage.getItem('txt').slice(0, 150) + "...";
+        // p.innerHTML = localStorage.getItem('text').slice(0, 150) + "...";
         if (data[i].src.length > 4) {
             article.appendChild(img);
         }
@@ -53,9 +54,10 @@ function loadData (data) {
 }
 
 function loadTxt (data) {
-    let txt = data[0].txt;
-    localStorage.setItem('txt', txt);
-    shortText = txt; 
+    // let txt = data[0].txt;
+    // localStorage.setItem('text', txt);
+    // console.log(localStorage.getItem('text'));
+    
 }
 
 
