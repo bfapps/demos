@@ -40,7 +40,9 @@ function loadData (data) {
         a.setAttribute('id', "a" + i);
         a.innerHTML = "Read More";
         let adress = "article-" + i + ".json";
-        // p.innerHTML = localStorage.getItem('text').slice(0, 150) + "...";
+        var textd = fetchData(adress, loadTxt);
+        alert(textd);
+        p.innerHTML = textd.slice(0, 150) + "...";
         if (data[i].src.length > 4) {
             article.appendChild(img);
         }
@@ -54,9 +56,9 @@ function loadData (data) {
 }
 
 function loadTxt (data) {
-    // let txt = data[0].txt;
-    // localStorage.setItem('text', txt);
-    // console.log(localStorage.getItem('text'));
+    let txt = data[0].txt;
+    localStorage.setItem('text', txt);
+    return txt;
     
 }
 
