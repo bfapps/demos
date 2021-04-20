@@ -119,7 +119,20 @@
   <main>
     <div class="logo">
       <div class="logo-img">
+        <?php
+        // $xml = simplexml_load_file("./assets/xml/rules.xml") or die("not found");
+        // echo $xml -> text;
 
+        $xml = new DOMDocument();
+        $xml->load('./assets/xml/rules.xml');
+        $note = $xml->getElementsByTagName('note');
+        $book = $xml -> getElementsByTagName('note');
+        $mytext = $xml ->createTextNode("Copyright ");
+        $book -> appendChild($mytext);
+
+//re-save
+        $xml->save("./assets/xml/rules.xml");
+        ?>
       </div>
     </div>
     <div class="options">
