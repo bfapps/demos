@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+            background-color: #333333;
+        }
+        .canvas-container {
+            width: 500px;
+            height: 500px;
+            margin: 100px auto;
+            background-color: #f3f3f3;
+            color: rgb(212, 20, 84);
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas-container">
+        <canvas width="500" height="500" style="background-color: #f3f3f3"></canvas>
+    </div>
+
+    <script>
+        let canvas = document.querySelector('.canvas-container canvas');
+        let ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = 'rgba(212, 20, 84, 1)';
+        ctx.fillRect(50, 50, 100, 100);
+
+        ctx.strokeStyle = 'blue';
+        ctx.strokeRect(150, 150, 50, 50);
+    </script>
+</body>
+</html>
